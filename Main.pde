@@ -24,7 +24,7 @@ void setup() {
   createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
   check_y_collisions(nodes); //Checks nodes do not collide
   initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
-  //simulatedannealing(computer_nodes, 90, 1); 
+  simulatedannealing(computer_nodes, 90, 10); 
 }
 void draw() {
   drawplayarea(); //Draws the two player areas

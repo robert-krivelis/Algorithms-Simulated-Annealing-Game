@@ -35,13 +35,13 @@ void check_y_collisions(node [] nodes) {
   for (int i=0; i<nodes.length; i++) {
     for (int j=0; j<i-1; j++) {
       while (abs(nodes[i].y-nodes[j].y) < (nodes[i].size+nodes[j].size)/2 && abs(nodes[i].x-nodes[j].x) < (nodes[i].size+nodes[j].size)/2) { //Check for collision
-        print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
+        //print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
         nodes[j].y = (int) random(150+nodes[j].size/2, 500-nodes[j].size/2);
       }
     }
     for (int j=i-1; j>0; j--) {
       while (abs(nodes[i].y-nodes[j].y) < (nodes[i].size+nodes[j].size)/2 && abs(nodes[i].x-nodes[j].x) < (nodes[i].size+nodes[j].size)/2) { //Check for collision
-        print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
+        //print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
         nodes[j].y = (int) random(150+nodes[j].size/2, 500-nodes[j].size/2);
       }
     }
