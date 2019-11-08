@@ -1,3 +1,5 @@
+//Luke and Robert ENCM 507 Project phase 1, 2019
+
 import processing.sound.*;
 SoundFile file;
 
@@ -12,15 +14,17 @@ int number_of_nodes = 10;
 float music_rate = 1;
 node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
+node [] new_partitions = new node[number_of_nodes];
 
 void setup() {
   size(1200, 600);
-  SoundFile file = new SoundFile(this, "rocky.wav");
-  file.play();
+  SoundFile file = new SoundFile(this, "rocky.wav"); //Loads song
+  file.play(); //Plays song
   initializenodes(nodes); //Initalizes nodes
-  createnodes(nodes, number_of_nodes); //Populates nodes with values
-  check_y_collisions(nodes);
-  initializecomputernodes(computer_nodes, nodes);
+  createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
+  check_y_collisions(nodes); //Checks nodes do not collide
+  initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
+  //simulatedannealing(computer_nodes, 90, 1); 
 }
 void draw() {
   drawplayarea(); //Draws the two player areas
@@ -55,8 +59,6 @@ int calculatebalance(node[] nodes) {
   }
   return round(a/number_of_nodes*100.0);
 }
-
-
 
 void musicspeed(SoundFile file) { //dead function for now
   if (millis()%300 ==0) { //every 3 second

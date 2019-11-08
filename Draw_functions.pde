@@ -44,7 +44,7 @@ void drawnodes(node[] nodes) {
 
 void drawplayarea() { //Draws pink play areas
   background(255);
-  fill(255, 255-millis()/100, 255-millis()/100) ;
+  fill(255, 255-millis()/500, 255-millis()/500) ;
   rectMode(CENTER);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
@@ -67,8 +67,12 @@ void drawwords() { //Draws all words on the screen
   text("A", midp1-5*textsize, 150);
   text("B", midp1+5*textsize, 150);
   
-  text("Net cost of Player: " +calculatecost(nodes), midp1, 550);
-  text("Net cost of Computer: " +calculatecost(computer_nodes), midp2, 550);
+  text("Net cuts of Player: " +calculatecost(nodes), midp1, 550);
+  text("Net cuts of Computer: " +calculatecost(computer_nodes), midp2, 550);
   text("Balance of Player: " +calculatebalance(nodes) + "%", midp1, 570);
   text("Balance of Computer: " +calculatebalance(computer_nodes)+ "%", midp2, 570);
+  textSize(24);
+  text("Happiness of Player: " + (int)COST(nodes)+"%", midp1, 520);
+  text("Happiness of Computer: " + (int)COST(computer_nodes)+"%", midp2, 520);
+  //each cut 10 percent
 }
