@@ -8,26 +8,28 @@ float midp2 = screen_x*3/4;
 int number_of_nodes = 10;
 node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
-//ArrayList<node> nodes = new ArrayList<node>();
-//ArrayList<node> computer_nodes = new ArrayList<node>();
+
 void setup() {
   size(1200, 600);
   initializenodes(nodes); //Initalizes nodes
   createnodes(nodes, number_of_nodes); //Populates nodes with values
   check_y_collisions(nodes);
-   
+  initializecomputernodes(computer_nodes, nodes);
 }
 void draw() {
   drawplayarea(); //Draws the two player areas
   drawwords(); //Draws all the words
   drawconnections(nodes); //Draws node connections
   drawnodes(nodes); //Draws all the nodes
+  drawconnections(computer_nodes); //Draws connections between computer nodes THIS WILL HAVE TO BE FIXED
+  drawnodes(computer_nodes); //Draws computer nodes
+  
   drawsplit(); //Draws partition
 }
 
 void drawplayarea() { //Draws pink play areas
   background(255);
-  fill(#fc88d6);
+  fill(255, 255-millis()/100,255-millis()/100) ;
   rectMode(CENTER);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
@@ -159,4 +161,23 @@ void mousePressed() { //remember that size is diameter
       drawconnections(nodes);
     }
   }
+}
+
+void initializecomputernodes(node []computer_nodes, node[] nodes) { //Replicates nodes over to the right
+  for (int i = 0; i<nodes.length; i++) {
+    computer_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
+  }
+  for (int i = 0; i<nodes.length; i++) {
+    computer_nodes[i].ID = nodes[i].ID + number_of_nodes;
+    computer_nodes[i].x = nodes[i].x+600;
+    computer_nodes[i].y = nodes[i].y;
+    computer_nodes[i].size = nodes[i].size;
+    computer_nodes[i].partition = nodes[i].partition;
+    computer_nodes[i].connections =  nodes[i].connections;
+    computer_nodes[i].col = nodes[i].col;
+  }
+}
+
+void calculatecost(node[] nodes){
+  //calculatecost
 }
