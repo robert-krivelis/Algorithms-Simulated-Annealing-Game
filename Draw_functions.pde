@@ -44,7 +44,7 @@ void drawnodes(node[] nodes) {
 
 void drawplayarea() { //Draws pink play areas
   background(255);
-  fill(255, 255-millis()/500, 255-millis()/500) ;
+  fill(0+millis()/300, 255-millis()/300, 255) ;
   rectMode(CENTER);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
@@ -60,7 +60,7 @@ void drawwords() { //Draws all words on the screen
   text("Computer", midp2, 70);
   textSize(36);
   textFont(createFont("Georgia", 32));
-  text("Can you beat simulated annealing?", screen_x/2, 30);
+  text("Can you beat simulated annealing?", screen_x/2, 20);
   textSize(14);
   text("A", midp2-5*textsize, 150);
   text("B", midp2+5*textsize, 150);

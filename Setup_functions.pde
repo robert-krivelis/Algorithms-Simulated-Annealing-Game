@@ -53,7 +53,7 @@ void initializecomputernodes(node []computer_nodes, node[] nodes) { //Replicates
     computer_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
   for (int i = 0; i<nodes.length; i++) {
-    computer_nodes[i].ID = nodes[i].ID + number_of_nodes;
+    computer_nodes[i].ID = nodes[i].ID;// + number_of_nodes;
     computer_nodes[i].x = nodes[i].x+600;
     computer_nodes[i].y = nodes[i].y;
     computer_nodes[i].size = nodes[i].size;
@@ -68,8 +68,8 @@ void copy_nodes(node []new_nodes, node[] reference_nodes) { //Replicates nodes o
     new_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
   for (int i = 0; i<reference_nodes.length; i++) {
-    new_nodes[i].ID = reference_nodes[i].ID + number_of_nodes;
-    new_nodes[i].x = reference_nodes[i].x+600;
+    new_nodes[i].ID = reference_nodes[i].ID;
+    new_nodes[i].x = reference_nodes[i].x;
     new_nodes[i].y = reference_nodes[i].y;
     new_nodes[i].size = reference_nodes[i].size;
     new_nodes[i].partition = reference_nodes[i].partition;

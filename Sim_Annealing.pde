@@ -1,32 +1,29 @@
-void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) {
+void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { //Simulatedly Anneals computer nodes
   float [] Tinitial_and_Tmin = FirstThreeStepsAnnealing(nodes, Tinitial_p, Tmin_p); // Caculating T0 and Tmin based on input percents 
   float T = Tinitial_and_Tmin[0]; 
   float Tmin = Tinitial_and_Tmin[1];
-  float cooling_rate = 0.95; //How fast the temperature lowers
+  float cooling_rate = 0.999; //How fast the temperature lowers, lower = faster
   float r, delta_cost;
   iteration= 0;
   while (T>Tmin) { 
-    println("T: " + T,", Tmin: " +Tmin + "\n");
     iteration++;
     PERTURB(new_partitions, 20); //Move something in the copy of computer_nodes
     delta_cost = COST(nodes) - COST(new_partitions); //Cost calculated in this case is actually score. If the score of the suggested move is higher, it will result in a negative delta cost
-    println("Delta cost: " + delta_cost, "cost of new_partitions= " + COST(new_partitions), "Cost of nodes= " +COST(nodes) );
     if (delta_cost<0) {
       copy_nodes(nodes, new_partitions); //Make computer_nodes equal to it's copy that has been improved
-      println("Good solution accepted\n");
     } else if (delta_cost>0) {
       r = random(0, 1.0);
       if (r<exp(-delta_cost/T)) {
         copy_nodes(nodes, new_partitions); //If temperature is high, we are more likely to accept this bad solution
-        println("Bad solution accepted with percent to accept=" + exp(-delta_cost/T));
       }
     }
     T *= cooling_rate;
   }
+  for (int i =0; i<nodes.length; i++){ //Random fixing of wacky x values
+  println("Node" + i, "X:" + nodes[i].x, "Y:" + nodes[i].y);
+ 
+  }
 }
-//if (millis()%100 ==0) { //every second
-//}
-
 
 void PERTURB(node[] nodes, int balance_min) {
   int i = (int)random(0, nodes.length-1); //select a single node
@@ -48,9 +45,7 @@ float COST(node [] nodes) { //Calculates the score of a set of nodes
   return (int)(100-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes));
 }
 
-
-
-float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) {
+float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) { //Calculates T and Tmin based on initial percentages
   copy_nodes(new_partitions, nodes); //Make a copy of computer_nodes
   float r, delta_cost;
   float avg_delta_cost = 0;
@@ -65,9 +60,9 @@ float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) 
       if (r<exp(-delta_cost/100000.0)) { //take essentially every move (only for 3 times)
         copy_nodes(nodes, new_partitions);
       }
-      
     }
   }
   float [] TandTmin = {-avg_delta_cost/log(Tinitial_p/100.0), -avg_delta_cost/log(Tmin_p/100.0)}; //return actual values from percentages
+  print("T and Tmin: " + TandTmin[0], " " + TandTmin[1]);
   return TandTmin;
 }

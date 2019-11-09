@@ -10,7 +10,7 @@ float play_y = screen_y-200;
 float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
-int number_of_nodes = 10;
+int number_of_nodes = 15;
 float music_rate = 1;
 node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
@@ -24,7 +24,7 @@ void setup() {
   createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
   check_y_collisions(nodes); //Checks nodes do not collide
   initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
-  simulatedannealing(computer_nodes, 90, 10); //Simulatedly anneals the computer nodes into an optimal position.
+  simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
 }
 void draw() {
   drawplayarea(); //Draws the two player areas
