@@ -74,5 +74,6 @@ void drawwords() { //Draws all words on the screen
   textSize(24);
   text("Happiness of Player: " + (int)COST(nodes)+"%", midp1, 520);
   text("Happiness of Computer: " + (int)COST(computer_nodes)+"%", midp2, 520);
+  text("Iterations completed: " + iteration, midp2, 50);
   //each cut 10 percent
 }

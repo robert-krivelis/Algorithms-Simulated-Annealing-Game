@@ -1,8 +1,8 @@
 //Luke and Robert ENCM 507 Project phase 1, 2019
 
-import processing.sound.*;
+import processing.sound.*; //Need to import processing.sound library to play music
 SoundFile file;
-
+int iteration; //Counts iterations of simulated_annealing
 float screen_x = 1200;
 float screen_y = 600;
 int textsize = 24;
@@ -24,14 +24,14 @@ void setup() {
   createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
   check_y_collisions(nodes); //Checks nodes do not collide
   initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
-  simulatedannealing(computer_nodes, 90, 10); 
+  simulatedannealing(computer_nodes, 90, 10); //Simulatedly anneals the computer nodes into an optimal position.
 }
 void draw() {
   drawplayarea(); //Draws the two player areas
   drawwords(); //Draws all the words
   drawconnections(nodes); //Draws node connections
   drawnodes(nodes); //Draws all the nodes
-  drawconnections(computer_nodes); //Draws connections between computer nodes THIS WILL HAVE TO BE FIXED
+  drawconnections(computer_nodes); //Draws connections between computer nodes
   drawnodes(computer_nodes); //Draws computer nodes
   drawsplit(); //Draws partition
   //musicspeed(file);
@@ -60,7 +60,7 @@ int calculatebalance(node[] nodes) {
   return round(a/number_of_nodes*100.0);
 }
 
-void musicspeed(SoundFile file) { //dead function for now
+void musicspeed(SoundFile file) { //dead function for now, will increase speed with difficulty
   if (millis()%300 ==0) { //every 3 second
     if (file.isPlaying()) {
       file.pause();
