@@ -1,3 +1,4 @@
+int iteration; //Counts iterations of simulated_annealing
 void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { //Simulatedly Anneals computer nodes
   float [] Tinitial_and_Tmin = FirstThreeStepsAnnealing(nodes, Tinitial_p, Tmin_p); // Caculating T0 and Tmin based on input percents 
   float T = Tinitial_and_Tmin[0]; 

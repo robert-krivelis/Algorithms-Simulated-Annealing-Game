@@ -1,3 +1,7 @@
+node [] nodes = new node[number_of_nodes];
+node [] computer_nodes = new node[number_of_nodes];
+node [] new_partitions = new node[number_of_nodes];
+
 void initializenodes(node[] nodes) {
   for (int i = 0; i<nodes.length; i++) {
     nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));

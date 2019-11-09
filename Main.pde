@@ -1,45 +1,36 @@
 //Luke and Robert ENCM 507 Project phase 1, 2019
 
-import processing.sound.*; //Need to import processing.sound library to play music
-SoundFile file;
-int iteration; //Counts iterations of simulated_annealing
-float screen_x = 1200;
-float screen_y = 600;
-int textsize = 24;
-float play_y = screen_y-200;
-float play_x = screen_x-200;
-float midp1 = screen_x/4;
-float midp2 = screen_x*3/4;
 int number_of_nodes = 15;
-float music_rate = 1;
-node [] nodes = new node[number_of_nodes];
-node [] computer_nodes = new node[number_of_nodes];
-node [] new_partitions = new node[number_of_nodes];
+int state = 0;
 
 void setup() {
   size(1200, 600);
-  SoundFile file = new SoundFile(this, "rocky.wav"); //Loads song
-  file.play(); //Plays song
-  initializenodes(nodes); //Initalizes nodes
-  createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
-  check_y_collisions(nodes); //Checks nodes do not collide
-  initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
-  simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
+  setupmenu();
 }
 void draw() {
-  drawplayarea(); //Draws the two player areas
-  drawwords(); //Draws all the words
-  drawconnections(nodes); //Draws node connections
-  drawnodes(nodes); //Draws all the nodes
-  drawconnections(computer_nodes); //Draws connections between computer nodes
-  drawnodes(computer_nodes); //Draws computer nodes
-  drawsplit(); //Draws partition
-  //musicspeed(file);
+  switch (state) {
+  case 0:
+    drawmenu();
+    break;
+  case 1:
+    do_once(1); //setup for state one
+    drawplayarea(); //Draws the two player areas
+    drawwords(); //Draws all the words
+    drawconnections(nodes); //Draws node connections
+    drawnodes(nodes); //Draws all the nodes
+    drawconnections(computer_nodes); //Draws connections between computer nodes
+    drawnodes(computer_nodes); //Draws computer nodes
+    drawsplit(); //Draws partition
+    break;
+  default:
+    println("You shouldn't be in here..");
+    break;
+  }
 }
 
 //Each play area is 400 tall, 500 across, seperations at 50, 300, 550 for x and 100, 500 for y
 
-int calculatecost(node[] nodes) {
+int calculatecost(node[] nodes) { //calculates net cuts
   int nc = 0;
   for (int i=0; i<nodes.length; i++) {
     for (int j=0; j<nodes[i].connections.size(); j++) {
@@ -50,7 +41,7 @@ int calculatecost(node[] nodes) {
   }
   return nc;
 }
-int calculatebalance(node[] nodes) {
+int calculatebalance(node[] nodes) { //calculates balance based on how many nodes are in partition a
   float a = 0;
   for (int i=0; i<nodes.length; i++) {
     if (nodes[i].partition == 'a') {
@@ -58,14 +49,4 @@ int calculatebalance(node[] nodes) {
     }
   }
   return round(a/number_of_nodes*100.0);
-}
-
-void musicspeed(SoundFile file) { //dead function for now, will increase speed with difficulty
-  if (millis()%300 ==0) { //every 3 second
-    if (file.isPlaying()) {
-      file.pause();
-    } else {
-      file.play();
-    }
-  }
 }
