@@ -39,21 +39,21 @@ void mousePressed() { //What happens when you click on the screen?
   //For state 2
   else if (state==2) { //difficulty menu
     if (overButton(int(rect5))) {
-      number_of_nodes =5;
+      number_of_nodes = amount_of_nodes[0];
       needs_setup =true;
       do_once(1); //setup for state 1
       state=-1;
       return;
     }
     else if (overButton(int(rect6))) {
-      number_of_nodes =10;
+      number_of_nodes = amount_of_nodes[1];
       needs_setup =true;
       do_once(1); //setup for state 1
       state=-1;
       return;
     }
     else if (overButton(int(rect7))) {
-      number_of_nodes =20;
+      number_of_nodes = amount_of_nodes[2];
       needs_setup =true;
       do_once(1); //setup for state 1
       state=-1;

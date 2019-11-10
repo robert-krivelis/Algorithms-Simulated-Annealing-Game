@@ -57,23 +57,28 @@ void drawwords() { //Draws all words on the screen
   textAlign(CENTER, CENTER);
   text("Player", midp1, 70);
   text("Simulated Annealing", midp2, 70);
-  textSize(36);
-  textFont(createFont("Georgia", 30));
-  text("Can you beat simulated annealing?", screen_x/2, 20);
+  textFont(createFont("Georgia", 36));
+  text("Keep everyone happy!", screen_x/2, 40);
   textSize(14);
   text("A", midp2-5*textsize, 150);
   text("B", midp2+5*textsize, 150);
   text("A", midp1-5*textsize, 150);
   text("B", midp1+5*textsize, 150);
-
+  //Calculate balance is just percentage of nodes that are on the left. 100 - 50-50/50
+  textAlign(CENTER, CENTER); 
   text("Net cuts of Player: " +calculatecost(nodes), midp1, 550);
-  text("Net cuts of Computer: " +calculatecost(computer_nodes), midp2, 550);
-  text("Balance of Player: " +calculatebalance(nodes) + "%", midp1, 570);
-  text("Balance of Computer: " +calculatebalance(computer_nodes)+ "%", midp2, 570);
+  text("Net cuts of Computer: " +calculatecost(computer_nodes), midp2-125, 550);
+  text("Happiness of Students: " +(100-calculatecost(nodes)*10)+ "%", midp1, 570); //%error is (e-t)/t
+  text("Happiness of Students: " +(100-calculatecost(computer_nodes)*10)+ "%", midp2-125, 570); //%error is (e-t)/t
+  text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(nodes)-50)/50.0)*100.0)+ "%", midp1, 590); //%error is (e-t)/t
+  text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(computer_nodes)-50)/50.0)*100.0)+ "%", midp2-125, 590); //%error is (e-t)/t
+  text("Iterations completed: " + iteration, midp2+125, h-50);
+  text("Current Temperature: " + nf(exp(-avg_delta_cost/T),1,2),midp2+125, h-30);
+  text("Temperature Minimum: " + nf(T_min_p,1,2), midp2+125, h-10);
+  
   textSize(24);
-  text("Happiness of Player: " + (int)(COST(nodes))+"%", midp1, 520);
-  text("Happiness of Computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
-  text("Iterations completed: " + iteration, w/2, h-50);
+  text("Combined Happiness of player: " + (int)(COST(nodes))+"%", midp1, 520);
+  text("Combined Happiness of computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
   //each cut 10 percent
 }
 

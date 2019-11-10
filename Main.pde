@@ -1,14 +1,13 @@
 //Luke and Robert ENCM 507 Project phase 1, 2019
 
 //Fix difficulty levels so that time actually matters 3.
-
+ 
 //Fix customize simulated annealing - Be able to input Cooling rate, min temp, max temp, num of nodes -- Wait this one is actually pretty easy I think?
-int number_of_nodes = 20;
+int [] amount_of_nodes = {5,10,15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
+int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
-float T;
-float Tmin;
-float cooling_rate = 0.98; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.99; //How fast the temperature lowers, lower = faster. 
 int state = 0;
 
 /*
@@ -51,4 +50,4 @@ void draw() {
   }
 }
 
-//Each play area is 400 tall, 500 across, seperations at 50, 300, 550 for x and 100, 500 for y
+//Each play area is 400 tall, 500 across, seperations at 50, 300, 550, 1200-50, 1200-300, 1200-550 for x and 100, 500 for y
