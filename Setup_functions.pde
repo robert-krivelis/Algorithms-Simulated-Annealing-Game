@@ -6,8 +6,8 @@ node [] new_partitions = new node[number_of_nodes];
 void initializenodes(node[] nodes) {
   /* Input: node []
   Output: Fills in node array with empty values */
-  for (int i = 0; i<nodes.length; i++) {
-    nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
+  for (int i = 0; i<number_of_nodes; i++) {
+    nodes[i] = new node(0, -100, -100, 0, 'a', new IntList(), color(0, 0, 0));
   }
 }
 void createnodes(node[] nodes, int n) {
@@ -15,7 +15,7 @@ void createnodes(node[] nodes, int n) {
   Output: Fills in node array with meaningful values, giving a location, color, and partition to each node  */
   for (int i = 0; i<n; i++) {
     nodes[i].ID = i;
-    nodes[i].size = 30;
+    nodes[i].size = -2*n + 60; // y = mx + b for size of nodes 
     nodes[i].col = color(random(50, 255), random(50, 255), random(50, 255));
     if (random(0, 1.0)<0.5) {
       nodes[i].partition = 'a'; 
@@ -43,16 +43,14 @@ void createnodes(node[] nodes, int n) {
 void check_y_collisions(node [] nodes) {
   /* Input: node []
   Output: Moves a node's y position if it overlaps with another node */
-  for (int i=0; i<nodes.length; i++) {
+  for (int i=0; i<number_of_nodes; i++) {
     for (int j=0; j<i-1; j++) {
       while (abs(nodes[i].y-nodes[j].y) < (nodes[i].size+nodes[j].size)/2.0 && abs(nodes[i].x-nodes[j].x) < (nodes[i].size+nodes[j].size)/2.0) { //Check for collision
-        //print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
         nodes[j].y = (int) random(150+nodes[j].size/2.0, 500-nodes[j].size/2.0);
       }
     }
     for (int j=i-1; j>0; j--) {
       while (abs(nodes[i].y-nodes[j].y) < (nodes[i].size+nodes[j].size)/2.0 && abs(nodes[i].x-nodes[j].x) < (nodes[i].size+nodes[j].size)/2.0) { //Check for collision
-        //print("collision at " + i, j, "because of ", nodes[i].y, nodes[j].y, abs(nodes[i].y-nodes[j].y), (nodes[i].size+nodes[j].size)/2, "or", nodes[i].x, nodes[j].x, abs(nodes[i].x-nodes[j].x), (nodes[i].size+nodes[j].size)/2, "\n");
         nodes[j].y = (int) random(150+nodes[j].size/2.0, 500-nodes[j].size/2.0);
       }
     }
@@ -62,10 +60,10 @@ void check_y_collisions(node [] nodes) {
 void initializecomputernodes(node []computer_nodes, node[] nodes) { 
   /* Input: node [], node []
   Output: Copies an array of nodes, but with each node over to the right 600 pixels*/
-  for (int i = 0; i<nodes.length; i++) {
+  for (int i = 0; i<number_of_nodes; i++) {
     computer_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
-  for (int i = 0; i<nodes.length; i++) {
+  for (int i = 0; i<number_of_nodes; i++) {
     computer_nodes[i].ID = nodes[i].ID;// + number_of_nodes;
     computer_nodes[i].x = nodes[i].x+600;
     computer_nodes[i].y = nodes[i].y;
@@ -79,10 +77,10 @@ void initializecomputernodes(node []computer_nodes, node[] nodes) {
 void copy_nodes(node []new_nodes, node[] reference_nodes) {
   /* Input: node [], node[]
   Output: Copies the second array into the first array */
-  for (int i = 0; i<reference_nodes.length; i++) {
+  for (int i = 0; i<number_of_nodes; i++) {
     new_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
-  for (int i = 0; i<reference_nodes.length; i++) {
+  for (int i = 0; i<number_of_nodes; i++) {
     new_nodes[i].ID = reference_nodes[i].ID;
     new_nodes[i].x = reference_nodes[i].x;
     new_nodes[i].y = reference_nodes[i].y;
@@ -107,10 +105,11 @@ void do_once(int state) {
   }
   if (state==1 && needs_setup==true) { //State one initialization 
     music();
-    initializenodes(nodes); //Initalizes nodes
-    createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
+    game_started = millis();
+    initializenodes(nodes); //Initalizes player nodes
+    createnodes(nodes, number_of_nodes); //Populates player nodes with values, gives them a partition and appropriate x location
     check_y_collisions(nodes); //Checks nodes do not collide
-    initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
+    initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes as a copy of player nodes
     simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
     needs_setup=false;
   }

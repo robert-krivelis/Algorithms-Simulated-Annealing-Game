@@ -5,11 +5,12 @@ float play_y = screen_y-200;
 float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
+int game_started; //For time purposes
 
 void drawconnections(node [] nodes) {
   /* Input: node []
   Output: lines drawn between each node and the node it is connected to */
-  for (int i=0; i<nodes.length; i++) {
+  for (int i=0; i<number_of_nodes; i++) {
     fill(0);
     strokeWeight(1);
     for (int j=0; j<nodes[i].connections.size(); j++) {
@@ -25,7 +26,7 @@ void drawsplit() { //Draws the cut between the two partitions
 void drawnodes(node[] nodes) {
   /* Input: node []
   Output: Circle of each node is drawn and it's index number */
-  for (int i=0; i<nodes.length; i++) {
+  for (int i=0; i<number_of_nodes; i++) {
     fill(nodes[i].col);
     circle(nodes[i].x, nodes[i].y, nodes[i].size);
     fill(0);
@@ -36,7 +37,7 @@ void drawnodes(node[] nodes) {
 
 void drawplayarea() { //Draws pink play areas
   background(255);
-  fill(0+millis()/300, 255-millis()/300, 255) ;
+  fill(255, 0+(millis()-game_started)/50, 0+(millis()-game_started)/50) ; //Instead of making the play area change color, make background change
   rectMode(CENTER);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);

@@ -22,15 +22,12 @@ void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) {
     }
     T *= cooling_rate;
   }
-  for (int i =0; i<nodes.length; i++) { //Random fixing of wacky x values
-    println("Node" + i, "X:" + nodes[i].x, "Y:" + nodes[i].y);
-  }
 }
 
 void PERTURB(node[] nodes, int balance_min) {
   /* Input: node [], minimum balance allowed during simulated annealing process
    Output: Moves a node over to the opposite partition */
-  int i = (int)random(0, nodes.length-1); //select a single node
+  int i = (int)random(0, number_of_nodes-1); //select a single node
   if (nodes[i].partition =='a' && calculatebalance(nodes) - 1.0/number_of_nodes*100>balance_min) { //change partition to b if a will retain 20% or more of the current nodes
     nodes[i].partition ='b';
     nodes[i].x += 300-50;
@@ -63,13 +60,12 @@ float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) 
     }
   }
   float [] TandTmin = {-avg_delta_cost/log(Tinitial_p/100.0), -avg_delta_cost/log(Tmin_p/100.0)}; //return actual values from percentages
-  print("T and Tmin: " + TandTmin[0], " " + TandTmin[1]);
   return TandTmin;
 }
 
 int calculatecost(node[] nodes) { //calculates net cuts
   int nc = 0;
-  for (int i=0; i<nodes.length; i++) {
+  for (int i=0; i<number_of_nodes; i++) {
     for (int j=0; j<nodes[i].connections.size(); j++) {
       if (nodes[i].partition != nodes[nodes[i].connections.get(j)].partition) { //if a node and it's connection node are in different partitions add nc
         nc +=1;
@@ -80,7 +76,7 @@ int calculatecost(node[] nodes) { //calculates net cuts
 }
 int calculatebalance(node[] nodes) { //calculates balance based on how many nodes are in partition a
   float a = 0;
-  for (int i=0; i<nodes.length; i++) {
+  for (int i=0; i<number_of_nodes; i++) {
     if (nodes[i].partition == 'a') {
       a+=1;
     }

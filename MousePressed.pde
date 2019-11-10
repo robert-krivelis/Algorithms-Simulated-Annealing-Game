@@ -20,9 +20,9 @@ void mousePressed() { //What happens when you click on the screen?
     if (overButton(int(rect3))) {
     }
   }
-  //For state 1 - game
+  //For state 1 - Game
   else if (state==1) {
-    for (int i=0; i<nodes.length; i++) { //Checks if you clicked on a node and moves it
+    for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
       if (state ==1 && mouseX > nodes[i].x-nodes[i].size/2 && mouseX < nodes[i].x+nodes[i].size/2 && mouseY > nodes[i].y-nodes[i].size/2 && mouseY < nodes[i].y+nodes[i].size/2) {// Check if you clicked on a node
         if (nodes[i].partition == 'a') {
           nodes[i].partition = 'b';
