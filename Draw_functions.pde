@@ -11,7 +11,7 @@ PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-ve
 PImage classroom_flipped;
 float timer;
 float [] timer_bar = {screen_x/2, screen_y/2-200, 50, 400};
-float timer_modifier = 0.7; //lower is slower
+
 
 void drawconnections(node [] nodes) {
   /* Input: node []
@@ -58,21 +58,22 @@ void drawtime() {
   stroke(0);
 }
 void draw_end_game_screen() {
+  music(1, 0);
   rectMode(CENTER);
-  fill(255, 255, 255, 200);
-  rect(screen_x/2, screen_y/2, screen_x-150, screen_y-100);
+  fill(255, 255, 255, 230); //alpha of 230
+  rect(screen_x/2, screen_y/2, screen_x-400, screen_y-100);
   textSize(50);
   fill(0);  
   if ((int)(COST(nodes))>=(int)(COST(computer_nodes))) { //if player wins
-    text("You win!" ,screen_x/2, screen_y/2-100);
-  }
-  else{//computer wins
-     text("Computer wins!", screen_x/2, screen_y/2-100);
+    text("You win!", screen_x/2, screen_y/2-100);
+  } else {//computer wins
+    text("Computer wins!", screen_x/2, screen_y/2-100);
   }
   textSize(30);
   text("Your Combined Happiness: " + (int)(COST(nodes))+"%", screen_x/2, screen_y/2-50);
   text("Computer's Combined Happiness: " + (int)(COST(computer_nodes))+"%", screen_x/2, screen_y/2+50);
 }
+
 void drawnodes(node[] nodes) {
   /* Input: node []
    Output: Circle of each node is drawn and it's index number */
@@ -137,4 +138,20 @@ void drawimages() {
   tint(255, 125); 
   image(classroom, midp2-250, h/2-80, 250, 230);
   image(classroom_flipped, midp2, h/2-80, 250, 230);
+}
+void draw_text_box() {
+  rectMode(CENTER);
+  fill(200, 202, 202); 
+  textSize(30);
+  rect(w/2, 60, 500, 40); // x, x-textsize, l, textsize+20
+  fill(0);
+  //textMode(CORNER);
+  textAlign(LEFT, CENTER);
+  text (result, w/2-250, 55);
+  textAlign(CENTER);
+  if (millis()%2==0){
+    line(w/2-249 + result.length()*13, 78, w/2-235+ result.length()*13, 78);
+  }
+  text ("Enter desired values, seperated by commas", w/2, 120);
+  text ("Number of nodes(max 25),\nInitial temperature(max 99),\nMinimum temperature(min 0.0001),\nCooling rate(max 0.999),\nGame mode for regular or rowdy students(0 or 1),\nTime Modifier(0.1<x<1, 1 is fastest)", w/2, 180);
 }

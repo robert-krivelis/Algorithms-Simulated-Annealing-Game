@@ -22,6 +22,9 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
     if (overButton(int(rect3))) {
+      state=4; //Go to input screen
+      needs_setup =true;
+      return;
     }
   }
   //For state 1 - Game
@@ -58,6 +61,16 @@ void mousePressed() { //What happens when you click on the screen?
       music_rate = 1.4;
       number_of_nodes = amount_of_nodes[2];
       state=-1;
+      return;
+    }
+  }
+  //For state 4
+  else if (state==4) { //input menu
+    if (overButton(int(rect4))) {
+      state=1;
+      result +=',';
+      convertinput(); //reads string
+      needs_setup = true;
       return;
     }
   }

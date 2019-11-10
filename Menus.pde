@@ -4,6 +4,7 @@ float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
 float [] rect5, rect6, rect7;
+String result = "";
 
 boolean overButton(int dimensions[]) {
   /* Input: int [] of a rectangle
@@ -39,7 +40,7 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
   textSize(20);
   text("You are an overworked teacher in Calgary.\n\nAdministration has hired an additional teacher to teach half of your class.\n\nYou are given the task of seperating your students into two equally sized classrooms while\nnot breaking up the strong friendships that have formed in your classroom over the years.\n\nCan you sort your kids better than the computer does before the deadline hits?\n\nMake students happy by grouping them with their friends!\nMake teachers happy by having equally sized classrooms!\nGet the best overall score before the timer runs out!", w/2, h/2-20);
   if (game_modifier ==1) {
-    fill(175,0,0);
+    fill(175, 0, 0);
     text("Some students distract the whole class when paired together, so keep them apart to get the most happiness!", w/2, h-120);
   }
   drawnames();
@@ -164,4 +165,87 @@ void drawnames() {
   textAlign(RIGHT, BOTTOM);
   text("ENCM PROJECT PHASE 1\n LUKE RENAUD - ROBERT KRIVELIS", w-15, h-15);
   rectMode(CORNER);
+}
+
+void draw_input_screen() { //Draws very first screen with instructions/story
+  background(bg_color);
+  rectMode(CENTER);
+  fill(255);
+  rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  hover_i();
+  fill(0);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("Continue", w/2, h-55);
+}
+
+void keyPressed() {
+  if (result.length()<25) {
+    if (false) {
+    } else if (key == '2') {
+      result +='2';
+    } else if (key == '1') {
+      result +='1';
+    } else if (key == '3') {
+      result +='3';
+    } else if (key == '4') {
+      result +='4';
+    } else if (key == '5') {
+      result +='5';
+    } else if (key == '6') {
+      result +='6';
+    } else if (key == '7') {
+      result +='7';
+    } else if (key == '8') {
+      result +='8';
+    } else if (key == '9') {
+      result +='9';
+    } else if (key == '0') {
+      result +='0';
+    } else if (key == ',') {
+      result +=',';
+    } else if (key == '.') {
+      result +='.';
+    } else if (key == BACKSPACE) {
+      if (result.length()>0) {
+        result = result.substring(0, result.length()-1);
+      }
+    } else if (key == ENTER) { //continue
+      result +=',';
+      convertinput();
+      state = 1;
+      needs_setup = true;
+    }
+  }
+}
+
+void convertinput() {
+  int comma_index = 0;
+  String temp;
+  for (int i=0; i<6; i++) {
+    comma_index=0;
+    while (result.charAt(comma_index) != ',' || result.charAt(comma_index) != result.charAt(result.length()-1)) {
+      comma_index++;
+    }
+    temp = result.substring(0, comma_index);
+    result = result.substring(comma_index+1);
+    switch (i) {
+    case 0:
+      number_of_nodes = int(temp);
+      break;
+    case 1:
+      T_initial_p = float(temp); //Initial temperature for simulated annealing
+      break;
+    case 2:
+      T_min_p = float(temp); //Minimum temperature for simulated annealing
+      break;
+    case 3:
+      cooling_rate = float(temp); //How fast the temperature lowers, lower = faster. 
+    case 4:
+      game_modifier = int(temp);
+      break;
+    case 5:
+      timer_modifier = float(temp); //lower is slower
+    }
+  }
 }

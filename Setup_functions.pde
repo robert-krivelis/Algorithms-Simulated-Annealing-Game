@@ -147,4 +147,7 @@ void do_once(int state) {
     draw_end_game_screen();
     needs_setup=false;
   }
+  if (state ==4 && needs_setup==true) {
+    needs_setup=false;
+  }
 }

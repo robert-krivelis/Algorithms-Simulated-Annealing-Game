@@ -7,9 +7,5 @@ void music(float speed, int play) { //Plays music
     SoundFile file = new SoundFile(this, "rocky.wav"); //Loads song
     file.rate(speed);
     file.play();
-  } else {
-    if (file.isPlaying()) {
-      file.stop();
-    }
   }
 }
