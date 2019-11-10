@@ -1,5 +1,5 @@
 int iteration =0; //Counts iterations of simulated_annealing
-
+float avg_delta_cost = 0;
 void simulatedannealing (node[] nodes) { 
   /* Input: node [], T initial percentage, T minimum percentage
    Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */
@@ -44,8 +44,7 @@ float COST(node [] nodes) { //Calculates the score of a set of nodes
 
 float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) { //Calculates T and Tmin based on initial percentages
   copy_nodes(new_partitions, nodes); //Make a copy of computer_nodes
-  float r, delta_cost;
-  float avg_delta_cost = 0;   
+  float r, delta_cost;   
   for (int i = 0; i<3; i++) { //perform 3 iterations of simulated annealing to find average cost
     PERTURB(new_partitions, 20);
     delta_cost = COST(nodes) - COST(new_partitions);

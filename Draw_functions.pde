@@ -6,11 +6,13 @@ float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
 int game_started; //For time purposes
-color bg_color = #88c2c0;
+color bg_color = #88c2c0; //Background color
+PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-vector-for-clip-art-students-png-13568
+PImage classroom_flipped;
 
 void drawconnections(node [] nodes) {
   /* Input: node []
-  Output: lines drawn between each node and the node it is connected to */
+   Output: lines drawn between each node and the node it is connected to */
   for (int i=0; i<number_of_nodes; i++) {
     fill(0);
     strokeWeight(1);
@@ -26,12 +28,15 @@ void drawsplit() { //Draws the cut between the two partitions
 
 void drawnodes(node[] nodes) {
   /* Input: node []
-  Output: Circle of each node is drawn and it's index number */
+   Output: Circle of each node is drawn and it's index number */
   for (int i=0; i<number_of_nodes; i++) {
     fill(nodes[i].col);
     circle(nodes[i].x, nodes[i].y, nodes[i].size);
     fill(0);
-    text(nodes[i].ID, nodes[i].x, nodes[i].y);
+    circle(nodes[i].x-nodes[i].size*0.2, nodes[i].y-nodes[i].size*0.25, nodes[i].size*0.1); //Draw happy face
+    circle(nodes[i].x+nodes[i].size*0.2, nodes[i].y-nodes[i].size*0.25, nodes[i].size*0.1);
+    noFill();
+    arc(nodes[i].x, nodes[i].y, nodes[i].size*0.7, nodes[i].size*0.7, 0, PI);
   }
 }
 
@@ -41,7 +46,7 @@ void drawplayarea() { //Draws pink play areas
   rectMode(CENTER);
   fill(255);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
-  fill(255, 0+(millis()-game_started)/50, 0+(millis()-game_started)/50) ; //Instead of making the play area change color, make background change
+  fill(255, 255-255*exp(-avg_delta_cost/T), 255-255*exp(-avg_delta_cost/T)) ; //Changes color of computer play area based on temp
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
   rectMode(CORNER);
 }
@@ -71,4 +76,13 @@ void drawwords() { //Draws all words on the screen
   text("Happiness of Computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
   text("Iterations completed: " + iteration, w/2, h-50);
   //each cut 10 percent
+}
+
+void drawimages() {
+  tint(255, 55); 
+  image(classroom, midp1-250, h/2-80, 250, 230); //Flickers because it's redrawn often
+  image(classroom_flipped, midp1, h/2-80, 250, 230);
+  tint(255, 125); 
+  image(classroom, midp2-250, h/2-80, 250, 230);
+  image(classroom_flipped, midp2, h/2-80, 250, 230);
 }

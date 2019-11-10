@@ -112,6 +112,8 @@ void do_once(int state) {
     initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes as a copy of player nodes
     T = FirstThreeStepsAnnealing(computer_nodes, T_initial_p, T_min_p)[0];
     Tmin = FirstThreeStepsAnnealing(computer_nodes, T_initial_p, T_min_p)[1];
+    classroom = loadImage("classroom.png");
+    classroom_flipped = loadImage("classroom_flipped.png");
     needs_setup=false;
   }
   if (state ==2 && needs_setup==true) {

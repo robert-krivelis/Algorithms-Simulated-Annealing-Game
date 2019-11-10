@@ -4,15 +4,15 @@
 
 //Fix difficulty levels so that time actually matters 3.
 //Fix graphics so it's beautiful looking 2.
-//Fix simulated annealing so that you can see it happening as it's going 1.
 //Fix customize simulated annealing - Be able to input Cooling rate, min temp, max temp, num of nodes -- Wait this one is actually pretty easy I think?
-int number_of_nodes = 15;
-float T_initial_p = 90; //Initial temperature for simulated annealing
-float T_min_p = 0.1; //Minimum temperature for simulated annealing
+int number_of_nodes = 20;
+float T_initial_p = 10; //Initial temperature for simulated annealing
+float T_min_p = 0.001; //Minimum temperature for simulated annealing
 float T;
 float Tmin;
-float cooling_rate = 0.96; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.999; //How fast the temperature lowers, lower = faster. 
 int state = -1;
+
 /*
 State -1 = Instructions
 State 0 = Game selection
@@ -34,13 +34,12 @@ void draw() {
     drawmenu();
     break;
   case 1:
-    drawplayarea(); //Draws the two player areas
+    drawplayarea(); //Draws the two player areas  
+    drawimages();//Draws classroom clipart
     drawwords(); //Draws all the words
     drawconnections(nodes); //Draws node connections
     drawnodes(nodes); //Draws all the nodes
     simulatedannealing(computer_nodes); //Simulatedly anneals the computer nodes into an optimal position.
-    //drawconnections(computer_nodes); //Draws connections between computer nodes
-    //drawnodes(computer_nodes); //Draws computer nodes
     drawsplit(); //Draws partition
     break;
   case 2:

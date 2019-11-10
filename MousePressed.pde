@@ -31,11 +31,8 @@ void mousePressed() { //What happens when you click on the screen?
           nodes[i].partition = 'a';
           nodes[i].x -= 300-50;
         }
-
         check_y_collisions(nodes);
-        drawplayarea();
-        drawnodes(nodes);
-        drawconnections(nodes);
+        
       }
     }
   }
@@ -56,7 +53,7 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
     else if (overButton(int(rect7))) {
-      number_of_nodes =15;
+      number_of_nodes =20;
       needs_setup =true;
       do_once(1); //setup for state 1
       state=1;
