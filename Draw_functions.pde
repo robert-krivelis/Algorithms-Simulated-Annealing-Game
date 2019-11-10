@@ -6,6 +6,7 @@ float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
 int game_started; //For time purposes
+color bg_color = #88c2c0;
 
 void drawconnections(node [] nodes) {
   /* Input: node []
@@ -36,10 +37,11 @@ void drawnodes(node[] nodes) {
 
 
 void drawplayarea() { //Draws pink play areas
-  background(255);
-  fill(255, 0+(millis()-game_started)/50, 0+(millis()-game_started)/50) ; //Instead of making the play area change color, make background change
+  background(bg_color);
   rectMode(CENTER);
+  fill(255);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
+  fill(255, 0+(millis()-game_started)/50, 0+(millis()-game_started)/50) ; //Instead of making the play area change color, make background change
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
   rectMode(CORNER);
 }
@@ -52,7 +54,7 @@ void drawwords() { //Draws all words on the screen
   text("Player", midp1, 70);
   text("Computer", midp2, 70);
   textSize(36);
-  textFont(createFont("Georgia", 32));
+  textFont(createFont("Georgia", 30));
   text("Can you beat simulated annealing?", screen_x/2, 20);
   textSize(14);
   text("A", midp2-5*textsize, 150);
@@ -67,6 +69,6 @@ void drawwords() { //Draws all words on the screen
   textSize(24);
   text("Happiness of Player: " + (int)(COST(nodes))+"%", midp1, 520);
   text("Happiness of Computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
-  text("Iterations completed: " + iteration, midp2, 50);
+  text("Iterations completed: " + iteration, w/2, h-50);
   //each cut 10 percent
 }

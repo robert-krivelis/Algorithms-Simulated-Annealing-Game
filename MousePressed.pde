@@ -48,14 +48,14 @@ void mousePressed() { //What happens when you click on the screen?
       state=1;
       return;
     }
-    if (overButton(int(rect6))) {
+    else if (overButton(int(rect6))) {
       number_of_nodes =10;
       needs_setup =true;
       do_once(1); //setup for state 1
       state=1;
       return;
     }
-    if (overButton(int(rect7))) {
+    else if (overButton(int(rect7))) {
       number_of_nodes =15;
       needs_setup =true;
       do_once(1); //setup for state 1

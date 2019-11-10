@@ -1,15 +1,12 @@
-int iteration; //Counts iterations of simulated_annealing
-void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { 
+int iteration =0; //Counts iterations of simulated_annealing
+
+void simulatedannealing (node[] nodes) { 
   /* Input: node [], T initial percentage, T minimum percentage
    Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */
-  float [] Tinitial_and_Tmin = FirstThreeStepsAnnealing(nodes, Tinitial_p, Tmin_p); // Caculating T0 and Tmin based on input percents 
-  float T = Tinitial_and_Tmin[0]; 
-  float Tmin = Tinitial_and_Tmin[1];
-  float cooling_rate = 0.999; //How fast the temperature lowers, lower = faster. 
   float r, delta_cost;
-  iteration= 0;
-  while (T>Tmin) { 
+  if (T>Tmin) { //Changing from a while loop to an if statement makes it so that it can be shown in real time
     iteration++;
+    //println(iteration);
     PERTURB(new_partitions, 20); //Move something in the copy of computer_nodes
     delta_cost = COST(nodes) - COST(new_partitions); //Cost calculated in this case is actually score. If the score of the suggested move is higher, it will result in a negative delta cost
     if (delta_cost<0) {
@@ -22,7 +19,10 @@ void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) {
     }
     T *= cooling_rate;
   }
+  drawconnections(computer_nodes); //Draws connections between computer nodes
+  drawnodes(computer_nodes); //Draws computer nodes
 }
+
 
 void PERTURB(node[] nodes, int balance_min) {
   /* Input: node [], minimum balance allowed during simulated annealing process
@@ -45,7 +45,7 @@ float COST(node [] nodes) { //Calculates the score of a set of nodes
 float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) { //Calculates T and Tmin based on initial percentages
   copy_nodes(new_partitions, nodes); //Make a copy of computer_nodes
   float r, delta_cost;
-  float avg_delta_cost = 0;
+  float avg_delta_cost = 0;   
   for (int i = 0; i<3; i++) { //perform 3 iterations of simulated annealing to find average cost
     PERTURB(new_partitions, 20);
     delta_cost = COST(nodes) - COST(new_partitions);
@@ -59,7 +59,8 @@ float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) 
       }
     }
   }
-  float [] TandTmin = {-avg_delta_cost/log(Tinitial_p/100.0), -avg_delta_cost/log(Tmin_p/100.0)}; //return actual values from percentages
+  iteration +=3;
+  float [] TandTmin = {-avg_delta_cost/log(Tinitial_p/100.0)*pow(cooling_rate, 3), -avg_delta_cost/log(Tmin_p/100.0)*pow(cooling_rate, 3)}; //return values from percentages with these iterations taken into account
   return TandTmin;
 }
 

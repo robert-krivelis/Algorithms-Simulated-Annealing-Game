@@ -16,11 +16,3 @@ public class node { //Contains the color, size, location, and neighbors of Nodes
     col = g;
   }
 }
-
-//What if I made an array with 5 or 10 or 15 or 20 nodes
-public class node_array { //Contains Nodes
-  node [] nodes = new node[number_of_nodes]; //The array of nodes is in here, meaning it can be accessed from anywhere with p1.nodes.x
-  node_array (node [] nodes_i) {
-  nodes = nodes_i;
-  }
-}

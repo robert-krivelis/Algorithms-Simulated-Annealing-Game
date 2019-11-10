@@ -110,7 +110,8 @@ void do_once(int state) {
     createnodes(nodes, number_of_nodes); //Populates player nodes with values, gives them a partition and appropriate x location
     check_y_collisions(nodes); //Checks nodes do not collide
     initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes as a copy of player nodes
-    simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
+    T = FirstThreeStepsAnnealing(computer_nodes, T_initial_p, T_min_p)[0];
+    Tmin = FirstThreeStepsAnnealing(computer_nodes, T_initial_p, T_min_p)[1];
     needs_setup=false;
   }
   if (state ==2 && needs_setup==true) {

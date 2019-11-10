@@ -16,7 +16,7 @@ boolean overButton(int dimensions[]) {
 }
 
 void instruction_screen() { //Sets up very first screen with instructions/story
-  background(#88c2c0);
+  background(bg_color);
   fill(0);
   textAlign(CENTER, CENTER);
   textFont(createFont("Agency FB Bold", 64));
@@ -65,7 +65,7 @@ void setupselectionmenu() { //Sets up menu where you can select different play s
 }
 
 void drawmenu() { //Draws menu where you can select different play styles
-  background(#88c2c0);
+  background(bg_color);
   fill(255);
   rectMode(CENTER);
   rect(rect1[0], rect1[1], rect1[2], rect1[3]);
@@ -121,7 +121,7 @@ void setupselectionmenu_d() { //Sets up difficulty menu
   rect7[3] = h*0.15;
 }
 void drawmenu_d() { //Draws difficulty menu
-  background(#88c2c0);
+  background(bg_color);
   fill(255);
   rectMode(CENTER);
   rect(rect5[0], rect5[1], rect5[2], rect5[3]);
