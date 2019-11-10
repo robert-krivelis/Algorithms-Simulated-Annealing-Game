@@ -2,7 +2,7 @@ int iteration =0; //Counts iterations of simulated_annealing
 float avg_delta_cost = 0;
 float T;
 float Tmin;
-float best_score=-100;
+float best_score=-100; //Keeps track of the best score simulated annealing has gotten
 void simulatedannealing (node[] nodes) { 
   /* Input: node [], T initial percentage, T minimum percentage
    Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */

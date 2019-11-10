@@ -10,18 +10,18 @@ void mousePressed() { //What happens when you click on the screen?
   }
   //For state 0 - Game selection
   else if (state==0) {
-    if (overButton(int(rect1))) {
+    if (overButton(int(rect1))) { //If you click on the first button
       state=2; //Go to instructions
       needs_setup =true;
       return;
     }
-    if (overButton(int(rect2))) {
+    if (overButton(int(rect2))) { //If you click on the second button
       state=2; //Go to instructions
       game_modifier = 1; //Make rowdy connections
       needs_setup =true;
       return;
     }
-    if (overButton(int(rect3))) {
+    if (overButton(int(rect3))) { //If you click on the third button
       state=4; //Go to input screen
       needs_setup =true;
       return;
@@ -42,21 +42,21 @@ void mousePressed() { //What happens when you click on the screen?
       }
     }
   }
-  //For state 2
-  else if (state==2) { //difficulty menu
-    if (overButton(int(rect5))) {
+  //For state 2 - Difficulty menu
+  else if (state==2) { 
+    if (overButton(int(rect5))) { //If you click on the first button
       number_of_nodes = amount_of_nodes[0];
       timer_modifier = 0.5;
       music_rate = 1;
       state=-1;
       return;
-    } else if (overButton(int(rect6))) {
+    } else if (overButton(int(rect6))) {//If you click on the second button
       number_of_nodes = amount_of_nodes[1];
       timer_modifier = 0.7;
       music_rate = 1.2;
       state=-1;
       return;
-    } else if (overButton(int(rect7))) {
+    } else if (overButton(int(rect7))) {//If you click on the third button
       timer_modifier = 0.7;
       music_rate = 1.4;
       number_of_nodes = amount_of_nodes[2];
@@ -64,9 +64,9 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
   }
-  //For state 4
-  else if (state==4) { //input menu
-    if (overButton(int(rect4))) {
+  //For state 4 - Input menu
+  else if (state==4) { 
+    if (overButton(int(rect4))) { //If you click continue
       state=1;
       result +=',';
       convertinput(); //reads string

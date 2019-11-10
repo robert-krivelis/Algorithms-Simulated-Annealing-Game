@@ -158,7 +158,7 @@ void hover_d() { //Changes buttons based on if you are hovering above them or no
   }
 }
 
-void drawnames() {
+void drawnames() { //Draws our names! We did this
   textFont(createFont("Georgia", 32));
   textSize(14);
   fill(50);
@@ -179,7 +179,7 @@ void draw_input_screen() { //Draws very first screen with instructions/story
   text("Continue", w/2, h-55);
 }
 
-void keyPressed() {
+void keyPressed() { //Checks for key presses for the input custom settings screen
   if (result.length()<25) {
     if (false) {
     } else if (key == '2') {
@@ -219,7 +219,7 @@ void keyPressed() {
   }
 }
 
-void convertinput() {
+void convertinput() { //Converts string in the text box of custom game setup to usable game values
   int comma_index = 0;
   String temp;
   for (int i=0; i<6; i++) {

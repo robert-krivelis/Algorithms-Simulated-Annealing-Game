@@ -14,6 +14,8 @@ State -1 = Instructions
  State 0 = Game selection
  State 1 = Base Game
  State 2 = Difficulty selection
+ State 3 = End Game 
+ State 4 = Custom inputs
  */
 
 void setup() {
@@ -48,14 +50,11 @@ void draw() {
     do_once(3); //setup for state 3 (end game screen)
     break;
   case 4:
-    do_once(4);
-    draw_input_screen();
+    do_once(4); //setup for state 4 (input screen)
+    draw_input_screen(); 
     draw_text_box();
     break;
   default:
-    println("You shouldn't be in here..");
     break;
   }
 }
-
-//Each play area is 400 tall, 500 across, seperations at 50, 300, 550, 1200-50, 1200-300, 1200-550 for x and 100, 500 for y

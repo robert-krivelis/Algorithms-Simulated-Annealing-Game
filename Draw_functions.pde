@@ -131,7 +131,7 @@ void drawwords() { //Draws all words on the screen
   //each cut 10 percent
 }
 
-void drawimages() {
+void drawimages() { //Draws classroom images during game
   tint(255, 55); 
   image(classroom, midp1-250, h/2-80, 250, 230); 
   image(classroom_flipped, midp1, h/2-80, 250, 230);
@@ -139,7 +139,7 @@ void drawimages() {
   image(classroom, midp2-250, h/2-80, 250, 230);
   image(classroom_flipped, midp2, h/2-80, 250, 230);
 }
-void draw_text_box() {
+void draw_text_box() { //Draws the text box in the custom input screen and the text on that screen
   rectMode(CENTER);
   fill(200, 202, 202); 
   textSize(30);
