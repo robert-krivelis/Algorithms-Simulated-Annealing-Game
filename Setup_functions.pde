@@ -15,7 +15,7 @@ void createnodes(node[] nodes, int n) {
   Output: Fills in node array with meaningful values, giving a location, color, and partition to each node  */
   for (int i = 0; i<n; i++) {
     nodes[i].ID = i;
-    nodes[i].size = -2*n + 60; // y = mx + b for size of nodes 
+    nodes[i].size = int( -1.2*n + 50); // y = mx + b for size of nodes 
     nodes[i].col = color(random(50, 255), random(50, 255), random(50, 255));
     if (random(0, 1.0)<0.5) {
       nodes[i].partition = 'a'; 

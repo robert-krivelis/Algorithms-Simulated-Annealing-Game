@@ -3,7 +3,7 @@ void mousePressed() { //What happens when you click on the screen?
   //For state -1 - Instructions
   if (state==-1) {
     if (overButton(int(rect4))) {
-      state=0;
+      state=1;
       needs_setup =true;
       return;
     }
@@ -11,7 +11,7 @@ void mousePressed() { //What happens when you click on the screen?
   //For state 0 - Game selection
   else if (state==0) {
     if (overButton(int(rect1))) {
-      state=2; //Go to difficulty selection
+      state=2; //Go to instructions
       needs_setup =true;
       return;
     }
@@ -37,26 +37,26 @@ void mousePressed() { //What happens when you click on the screen?
     }
   }
   //For state 2
-  else if (state==2) {
+  else if (state==2) { //difficulty menu
     if (overButton(int(rect5))) {
       number_of_nodes =5;
       needs_setup =true;
       do_once(1); //setup for state 1
-      state=1;
+      state=-1;
       return;
     }
     else if (overButton(int(rect6))) {
       number_of_nodes =10;
       needs_setup =true;
       do_once(1); //setup for state 1
-      state=1;
+      state=-1;
       return;
     }
     else if (overButton(int(rect7))) {
       number_of_nodes =20;
       needs_setup =true;
       do_once(1); //setup for state 1
-      state=1;
+      state=-1;
       return;
     }
   }

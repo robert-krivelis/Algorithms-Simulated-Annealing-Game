@@ -33,7 +33,7 @@ void drawnodes(node[] nodes) {
     fill(nodes[i].col);
     circle(nodes[i].x, nodes[i].y, nodes[i].size);
     fill(0);
-    circle(nodes[i].x-nodes[i].size*0.2, nodes[i].y-nodes[i].size*0.25, nodes[i].size*0.1); //Draw happy face
+    circle(nodes[i].x-nodes[i].size*0.2, nodes[i].y-nodes[i].size*0.25, nodes[i].size*0.1); //Draw happy face :)
     circle(nodes[i].x+nodes[i].size*0.2, nodes[i].y-nodes[i].size*0.25, nodes[i].size*0.1);
     noFill();
     arc(nodes[i].x, nodes[i].y, nodes[i].size*0.7, nodes[i].size*0.7, 0, PI);
@@ -54,10 +54,9 @@ void drawplayarea() { //Draws pink play areas
 void drawwords() { //Draws all words on the screen
   textSize(32);
   fill(0);
-  textMode(CENTER);
   textAlign(CENTER, CENTER);
   text("Player", midp1, 70);
-  text("Computer", midp2, 70);
+  text("Simulated Annealing", midp2, 70);
   textSize(36);
   textFont(createFont("Georgia", 30));
   text("Can you beat simulated annealing?", screen_x/2, 20);
@@ -80,7 +79,7 @@ void drawwords() { //Draws all words on the screen
 
 void drawimages() {
   tint(255, 55); 
-  image(classroom, midp1-250, h/2-80, 250, 230); //Flickers because it's redrawn often
+  image(classroom, midp1-250, h/2-80, 250, 230); 
   image(classroom_flipped, midp1, h/2-80, 250, 230);
   tint(255, 125); 
   image(classroom, midp2-250, h/2-80, 250, 230);
