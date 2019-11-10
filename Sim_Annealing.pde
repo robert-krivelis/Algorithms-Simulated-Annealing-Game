@@ -9,7 +9,6 @@ void simulatedannealing (node[] nodes) {
   float r, delta_cost;
   if (T>Tmin) { //Changing from a while loop to an if statement makes it so that it can be shown in real time
     iteration++;
-    //println(iteration);
     PERTURB(new_partitions, 20); //Move something in the copy of computer_nodes
     delta_cost = COST(nodes) - COST(new_partitions); //Cost calculated in this case is actually score. If the score of the suggested move is higher, it will result in a negative delta cost
     if (delta_cost<0) {

@@ -57,7 +57,7 @@ void mousePressed() { //What happens when you click on the screen?
       state=-1;
       return;
     } else if (overButton(int(rect7))) {//If you click on the third button
-      timer_modifier = 0.7;
+      timer_modifier = 0.9;
       music_rate = 1.4;
       number_of_nodes = amount_of_nodes[2];
       state=-1;

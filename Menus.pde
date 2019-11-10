@@ -139,9 +139,9 @@ void drawmenu_d() { //Draws difficulty menu
   text("Select Difficulty", w/2, 100);
   textFont(createFont("Georgia", 32));
   textSize(32);
-  text("1. Easy - 15 seconds, 5 nodes", rect5[0], rect5[1]); //Add difficulties
-  text("2. Medium - 10 seconds, 10 nodes", rect6[0], rect6[1]);
-  text("3. Hard - 10 seconds, 15 nodes", rect7[0], rect7[1]);
+  text("1. Easy", rect5[0], rect5[1]); //Add difficulties
+  text("2. Medium", rect6[0], rect6[1]);
+  text("3. Hard", rect7[0], rect7[1]);
   drawnames();
 }
 
@@ -176,7 +176,7 @@ void draw_input_screen() { //Draws very first screen with instructions/story
   fill(0);
   textSize(40);
   textAlign(CENTER, CENTER);
-  text("Continue", w/2, h-55);
+  text("Start", w/2, h-55);
 }
 
 void keyPressed() { //Checks for key presses for the input custom settings screen

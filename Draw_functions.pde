@@ -36,12 +36,6 @@ void drawsplit() { //Draws the cut between the two partitions
 }
 
 void drawtime() {
-  if (T>Tmin) {
-    text((millis()-timer)/100.0, 100, 20);// 400 450 480 less than 500
-  }
-  if (T<=Tmin) {
-    text("Computer done", 50, 20);
-  }
   rectMode(CORNER);
   noFill();
   rect(screen_x/2-25, screen_y/2-200, 50, 400);
@@ -106,7 +100,6 @@ void drawwords() { //Draws all words on the screen
   text("Player", midp1, 70);
   text("Simulated Annealing", midp2, 70);
   textFont(createFont("Georgia", 36));
-  text("Make everyone happy!", screen_x/2, 40);
   textSize(14);
   text("A", midp2-5*textsize, 150);
   text("B", midp2+5*textsize, 150);
