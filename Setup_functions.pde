@@ -4,11 +4,15 @@ node [] computer_nodes = new node[number_of_nodes];
 node [] new_partitions = new node[number_of_nodes];
 
 void initializenodes(node[] nodes) {
+  /* Input: node []
+  Output: Fills in node array with empty values */
   for (int i = 0; i<nodes.length; i++) {
     nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
 }
 void createnodes(node[] nodes, int n) {
+  /* Input: node []
+  Output: Fills in node array with meaningful values, giving a location, color, and partition to each node  */
   for (int i = 0; i<n; i++) {
     nodes[i].ID = i;
     nodes[i].size = 30;
@@ -37,6 +41,8 @@ void createnodes(node[] nodes, int n) {
 
 
 void check_y_collisions(node [] nodes) {
+  /* Input: node []
+  Output: Moves a node's y position if it overlaps with another node */
   for (int i=0; i<nodes.length; i++) {
     for (int j=0; j<i-1; j++) {
       while (abs(nodes[i].y-nodes[j].y) < (nodes[i].size+nodes[j].size)/2.0 && abs(nodes[i].x-nodes[j].x) < (nodes[i].size+nodes[j].size)/2.0) { //Check for collision
@@ -53,7 +59,9 @@ void check_y_collisions(node [] nodes) {
   }
 }
 
-void initializecomputernodes(node []computer_nodes, node[] nodes) { //Replicates nodes over to the right
+void initializecomputernodes(node []computer_nodes, node[] nodes) { 
+  /* Input: node [], node []
+  Output: Copies an array of nodes, but with each node over to the right 600 pixels*/
   for (int i = 0; i<nodes.length; i++) {
     computer_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
@@ -68,7 +76,9 @@ void initializecomputernodes(node []computer_nodes, node[] nodes) { //Replicates
   }
 }
 
-void copy_nodes(node []new_nodes, node[] reference_nodes) { //Replicates nodes over to the right
+void copy_nodes(node []new_nodes, node[] reference_nodes) {
+  /* Input: node [], node[]
+  Output: Copies the second array into the first array */
   for (int i = 0; i<reference_nodes.length; i++) {
     new_nodes[i] = new node(0, 0, 0, 0, 'a', new IntList(), color(0, 0, 0));
   }
@@ -85,6 +95,8 @@ void copy_nodes(node []new_nodes, node[] reference_nodes) { //Replicates nodes o
 
 //The only thing that ever switches a state is pressing a button. Therefore after pressing a button needs_setup should be true
 void do_once(int state) {
+  /* Input: state
+  Output: Based on state, do_once runs associated setup functions */
   if (state ==-1 && needs_setup==true) { //State =-1 (setup instruction screen)
     instruction_screen();
     needs_setup=false;

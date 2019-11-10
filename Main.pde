@@ -1,5 +1,8 @@
 //Luke and Robert ENCM 507 Project phase 1, 2019
-
+//How long would it take to turn my node[] nodes array into an object?
+//Does this solve my problem of not being able to resize my array of objects? ......... maybe 
+//I need to change the number of nodes there are in my array --> instead of an array this could be an object
+//So my object will have number of nodes and instead of nodes.length it is going to be nodes.length
 int number_of_nodes = 15;
 int state = -1; /*
 State -1 = Instructions

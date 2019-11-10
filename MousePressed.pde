@@ -1,4 +1,5 @@
 void mousePressed() { //What happens when you click on the screen?
+/* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
   //For state -1 - Instructions
   if (state==-1) {
     if (overButton(int(rect4))) {

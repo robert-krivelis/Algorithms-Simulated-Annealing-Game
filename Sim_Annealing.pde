@@ -1,9 +1,11 @@
 int iteration; //Counts iterations of simulated_annealing
-void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { //Simulatedly Anneals computer nodes
+void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { 
+  /* Input: node [], T initial percentage, T minimum percentage
+   Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */
   float [] Tinitial_and_Tmin = FirstThreeStepsAnnealing(nodes, Tinitial_p, Tmin_p); // Caculating T0 and Tmin based on input percents 
   float T = Tinitial_and_Tmin[0]; 
   float Tmin = Tinitial_and_Tmin[1];
-  float cooling_rate = 0.999; //How fast the temperature lowers, lower = faster
+  float cooling_rate = 0.999; //How fast the temperature lowers, lower = faster. 
   float r, delta_cost;
   iteration= 0;
   while (T>Tmin) { 
@@ -20,24 +22,21 @@ void simulatedannealing (node[] nodes, float Tinitial_p, float Tmin_p) { //Simul
     }
     T *= cooling_rate;
   }
-  for (int i =0; i<nodes.length; i++){ //Random fixing of wacky x values
-  println("Node" + i, "X:" + nodes[i].x, "Y:" + nodes[i].y);
- 
+  for (int i =0; i<nodes.length; i++) { //Random fixing of wacky x values
+    println("Node" + i, "X:" + nodes[i].x, "Y:" + nodes[i].y);
   }
 }
 
 void PERTURB(node[] nodes, int balance_min) {
+  /* Input: node [], minimum balance allowed during simulated annealing process
+   Output: Moves a node over to the opposite partition */
   int i = (int)random(0, nodes.length-1); //select a single node
   if (nodes[i].partition =='a' && calculatebalance(nodes) - 1.0/number_of_nodes*100>balance_min) { //change partition to b if a will retain 20% or more of the current nodes
-    println("Starting at a, knowing that" + calculatebalance(nodes), "-" + 1.0/number_of_nodes*100, ">" + balance_min);
     nodes[i].partition ='b';
     nodes[i].x += 300-50;
-    println("Moving node " + i + " from a to b.");
   } else if (nodes[i].partition =='b' && (100-calculatebalance(nodes)) - 1.0/number_of_nodes*100>balance_min) { //change partition to a if b will retain more than 20% of the current nodes
-    println("Starting at b, knowing that" + (100-calculatebalance(nodes)), "-" + 1.0/number_of_nodes*100, ">" + balance_min);
     nodes[i].partition ='a';
     nodes[i].x -= 300-50;
-    println("Moving node " + i + " from b to a.");
   }
   check_y_collisions(nodes);
 }

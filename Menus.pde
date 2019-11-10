@@ -6,6 +6,8 @@ float []rect4= {w/2, h-100, 200, 80};
 float [] rect5,rect6,rect7;
 
 boolean overButton(int dimensions[]) {
+  /* Input: int [] of a rectangle
+  Return Value: True or False of if the mouse is placed on the rectangle */
   if (mouseX >= dimensions[0]-dimensions[2]/2 && mouseX <= dimensions[0] + dimensions[2]/2 && 
     mouseY >= dimensions[1]-dimensions[3]/2 && mouseY <= dimensions[1]+dimensions[3]/2) 
     return true;

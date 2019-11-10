@@ -7,6 +7,8 @@ float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
 
 void drawconnections(node [] nodes) {
+  /* Input: node []
+  Output: lines drawn between each node and the node it is connected to */
   for (int i=0; i<nodes.length; i++) {
     fill(0);
     strokeWeight(1);
@@ -21,6 +23,8 @@ void drawsplit() { //Draws the cut between the two partitions
 }
 
 void drawnodes(node[] nodes) {
+  /* Input: node []
+  Output: Circle of each node is drawn and it's index number */
   for (int i=0; i<nodes.length; i++) {
     fill(nodes[i].col);
     circle(nodes[i].x, nodes[i].y, nodes[i].size);

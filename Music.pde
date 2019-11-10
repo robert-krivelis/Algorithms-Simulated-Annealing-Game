@@ -1,9 +1,9 @@
 import processing.sound.*; //Need to import processing.sound library to play music
 SoundFile file;
 float music_rate = 1;
-void music() {
+void music() { //Plays music
   SoundFile file = new SoundFile(this, "rocky.wav"); //Loads song
-  file.play(); //Plays song
+  file.play(); 
 }
 
 void musicspeed(SoundFile file) { //dead function for now, will increase speed with difficulty
