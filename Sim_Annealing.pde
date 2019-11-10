@@ -23,6 +23,10 @@ void simulatedannealing (node[] nodes) {
   }
   drawconnections(computer_nodes); //Draws connections between computer nodes
   drawnodes(computer_nodes); //Draws computer nodes
+  if (exp(-avg_delta_cost/T)<0.1){
+    cooling_rate = 0.999; //Slows down cooling rate near the end of annealing for better results without greatly increasing iteration count/time
+  }
+  
 }
 
 
@@ -41,11 +45,15 @@ void PERTURB(node[] nodes, int balance_min) {
 }
 
 float COST(node [] nodes) { //Calculates the score of a set of nodes
+  if (game_modifier==1) {
+    return (int)(70-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes) + 10*calculateanticost(nodes));
+  }
   return (int)(100-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes));
 }
 
 float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) { //Calculates T and Tmin based on initial percentages
   copy_nodes(new_partitions, nodes); //Make a copy of computer_nodes
+  copy_nodes(best_partitions, nodes);
   float r, delta_cost;   
   for (int i = 0; i<3; i++) { //perform 3 iterations of simulated annealing to find average cost
     PERTURB(new_partitions, 20);
@@ -76,7 +84,18 @@ int calculatecost(node[] nodes) { //calculates net cuts
   }
   return nc;
 }
-int calculatebalance(node[] nodes) { //calculates balance based on how many nodes are in partition a
+int calculateanticost(node[] nodes) { //calculates net cuts
+  int nc = 0;
+  for (int i=0; i<number_of_nodes; i++) {
+    for (int j=0; j<nodes[i].anticonnections.size(); j++) {
+      if (nodes[i].partition != nodes[nodes[i].anticonnections.get(j)].partition) { //if a node and it's connection node are in different partitions add nc
+        nc +=1;
+      }
+    }
+  }
+  return nc;
+}
+int calculatebalance(node[] nodes) { //calculates balance based on how many nodes are in partition 'a'
   float a = 0;
   for (int i=0; i<number_of_nodes; i++) {
     if (nodes[i].partition == 'a') {

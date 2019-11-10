@@ -9,16 +9,23 @@ int game_started; //For time purposes
 color bg_color = #88c2c0; //Background color
 PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-vector-for-clip-art-students-png-13568
 PImage classroom_flipped;
+float timer;
 
 void drawconnections(node [] nodes) {
   /* Input: node []
    Output: lines drawn between each node and the node it is connected to */
   for (int i=0; i<number_of_nodes; i++) {
     fill(0);
-    strokeWeight(1);
     for (int j=0; j<nodes[i].connections.size(); j++) {
       line(nodes[i].x, nodes[i].y, nodes[nodes[i].connections.get(j)].x, nodes[nodes[i].connections.get(j)].y);
     }
+    if (game_modifier ==1) {
+      stroke(200, 0, 0);
+      for (int j=0; j<nodes[i].anticonnections.size(); j++) {
+        line(nodes[i].x, nodes[i].y, nodes[nodes[i].anticonnections.get(j)].x, nodes[nodes[i].anticonnections.get(j)].y);
+      }
+    }
+    stroke(0);
   }
 }
 void drawsplit() { //Draws the cut between the two partitions  
@@ -49,6 +56,8 @@ void drawplayarea() { //Draws pink play areas
   fill(255, 255-255*exp(-avg_delta_cost/T), 255-255*exp(-avg_delta_cost/T)) ; //Changes color of computer play area based on temp
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
   rectMode(CORNER);
+  text((millis()-timer)/100.0,100,20);// 400 450 480 less than 500
+  text((frameCount)/100.0,200,20); //14 15
 }
 
 void drawwords() { //Draws all words on the screen
@@ -73,9 +82,9 @@ void drawwords() { //Draws all words on the screen
   text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(nodes)-50)/50.0)*100.0)+ "%", midp1, 590); //%error is (e-t)/t
   text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(computer_nodes)-50)/50.0)*100.0)+ "%", midp2-125, 590); //%error is (e-t)/t
   text("Iterations completed: " + iteration, midp2+125, h-50);
-  text("Current Temperature: " + nf(exp(-avg_delta_cost/T),1,2),midp2+125, h-30);
-  text("Temperature Minimum: " + nf(T_min_p,1,2), midp2+125, h-10);
-  
+  text("Current Temperature: " + nf(exp(-avg_delta_cost/T), 1, 2), midp2+125, h-30);
+  text("Temperature Minimum: " + nf(T_min_p, 1, 2), midp2+125, h-10);
+
   textSize(24);
   text("Combined Happiness of player: " + (int)(COST(nodes))+"%", midp1, 520);
   text("Combined Happiness of computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);

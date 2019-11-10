@@ -1,5 +1,5 @@
 void mousePressed() { //What happens when you click on the screen?
-/* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
+  /* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
   //For state -1 - Instructions
   if (state==-1) {
     if (overButton(int(rect4))) {
@@ -16,6 +16,10 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
     if (overButton(int(rect2))) {
+      state=2; //Go to instructions
+      game_modifier = 1; //Make rowdy connections
+      needs_setup =true;
+      return;
     }
     if (overButton(int(rect3))) {
     }
@@ -32,7 +36,6 @@ void mousePressed() { //What happens when you click on the screen?
           nodes[i].x -= 300-50;
         }
         check_y_collisions(nodes);
-        
       }
     }
   }
@@ -44,15 +47,13 @@ void mousePressed() { //What happens when you click on the screen?
       do_once(1); //setup for state 1
       state=-1;
       return;
-    }
-    else if (overButton(int(rect6))) {
+    } else if (overButton(int(rect6))) {
       number_of_nodes = amount_of_nodes[1];
       needs_setup =true;
       do_once(1); //setup for state 1
       state=-1;
       return;
-    }
-    else if (overButton(int(rect7))) {
+    } else if (overButton(int(rect7))) {
       number_of_nodes = amount_of_nodes[2];
       needs_setup =true;
       do_once(1); //setup for state 1

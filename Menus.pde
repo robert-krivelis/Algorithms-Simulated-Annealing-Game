@@ -3,11 +3,11 @@
 float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
-float [] rect5,rect6,rect7;
+float [] rect5, rect6, rect7;
 
 boolean overButton(int dimensions[]) {
   /* Input: int [] of a rectangle
-  Return Value: True or False of if the mouse is placed on the rectangle */
+   Return Value: True or False of if the mouse is placed on the rectangle */
   if (mouseX >= dimensions[0]-dimensions[2]/2 && mouseX <= dimensions[0] + dimensions[2]/2 && 
     mouseY >= dimensions[1]-dimensions[3]/2 && mouseY <= dimensions[1]+dimensions[3]/2) 
     return true;
@@ -17,7 +17,6 @@ boolean overButton(int dimensions[]) {
 
 void instruction_screen() { //Sets up very first screen with instructions/story
   background(bg_color);
-  
 }
 
 void draw_instruction_screen() { //Draws very first screen with instructions/story
@@ -28,17 +27,21 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
   hover_i();
   fill(0);
   textSize(40);
-  textAlign(CENTER,CENTER);
+  textAlign(CENTER, CENTER);
   text("Continue", w/2, h-55);
-  
+
   fill(0);
   textAlign(CENTER, CENTER);
   textFont(createFont("Agency FB Bold", 64));
   textSize(40);
-  text("Student Seperation", w/2, 50);
+  text("Student Seperation Instructions", w/2, 50);
   textFont(createFont("Georgia", 32));
   textSize(20);
-  text("You are an overworked teacher in Calgary.\n\nAdministration has hired an additional teacher to teach half of your class.\n\nYou are given the task of seperating your students into two equally sized classrooms while\nnot breaking up the strong friendships that have formed in your classroom over the years.\n\nCan you sort your kids better than the computer does before the deadline hits?\n\nMake students happy by grouping them with their friends!\nMake teachers happy by having equally sized classrooms!\nGet the best overall score before the timer runs out!", w/2, h/2);
+  text("You are an overworked teacher in Calgary.\n\nAdministration has hired an additional teacher to teach half of your class.\n\nYou are given the task of seperating your students into two equally sized classrooms while\nnot breaking up the strong friendships that have formed in your classroom over the years.\n\nCan you sort your kids better than the computer does before the deadline hits?\n\nMake students happy by grouping them with their friends!\nMake teachers happy by having equally sized classrooms!\nGet the best overall score before the timer runs out!", w/2, h/2-20);
+  if (game_modifier ==1) {
+    fill(175,0,0);
+    text("Some students distract the whole class when paired together, so keep them apart to get the most happiness!", w/2, h-120);
+  }
   drawnames();
 }
 
@@ -154,7 +157,7 @@ void hover_d() { //Changes buttons based on if you are hovering above them or no
   }
 }
 
-void drawnames(){
+void drawnames() {
   textFont(createFont("Georgia", 32));
   textSize(14);
   fill(50);

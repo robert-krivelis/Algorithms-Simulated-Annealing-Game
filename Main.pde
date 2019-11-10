@@ -7,8 +7,9 @@ int [] amount_of_nodes = {5,10,15}; //Amount of nodes for difficulties easy, med
 int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
-float cooling_rate = 0.99; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.96; //How fast the temperature lowers, lower = faster. 
 int state = 0;
+int game_modifier =0;
 
 /*
 State -1 = Instructions
