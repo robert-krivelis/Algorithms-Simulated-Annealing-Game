@@ -122,7 +122,7 @@ void do_once(int state) {
     needs_setup=false;
   }
   if (state==1 && needs_setup==true) { //State one initialization 
-    music();
+    music(music_rate, 1);
     game_started = millis();
     initializenodes(nodes); //Initalizes player nodes
     createnodes(nodes, number_of_nodes); //Populates player nodes with values, gives them a partition and appropriate x location
@@ -137,6 +137,14 @@ void do_once(int state) {
   }
   if (state ==2 && needs_setup==true) {
     setupselectionmenu_d();
+    needs_setup=false;
+  }
+  if (state ==2 && needs_setup==true) {
+    setupselectionmenu_d();
+    needs_setup=false;
+  }
+  if (state ==3 && needs_setup==true) {
+    draw_end_game_screen();
     needs_setup=false;
   }
 }

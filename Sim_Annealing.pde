@@ -2,6 +2,7 @@ int iteration =0; //Counts iterations of simulated_annealing
 float avg_delta_cost = 0;
 float T;
 float Tmin;
+float best_score=-100;
 void simulatedannealing (node[] nodes) { 
   /* Input: node [], T initial percentage, T minimum percentage
    Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */
@@ -13,6 +14,9 @@ void simulatedannealing (node[] nodes) {
     delta_cost = COST(nodes) - COST(new_partitions); //Cost calculated in this case is actually score. If the score of the suggested move is higher, it will result in a negative delta cost
     if (delta_cost<0) {
       copy_nodes(nodes, new_partitions); //Make computer_nodes equal to it's copy that has been improved
+      if (COST(best_partitions)-COST(new_partitions)<0) { //Update best_partitions if new score is higher
+        copy_nodes(best_partitions, new_partitions);
+      }
     } else if (delta_cost>0) {
       r = random(0, 1.0);
       if (r<exp(-delta_cost/T)) {
@@ -20,13 +24,16 @@ void simulatedannealing (node[] nodes) {
       }
     }
     T *= cooling_rate;
+  } else if (T<=Tmin) { //At end of annealing, revert to best partitions
+    if (COST(best_partitions)-COST(nodes)>0) { //Update best_partitions if new score is higher
+      copy_nodes(nodes, best_partitions);
+    }
   }
   drawconnections(computer_nodes); //Draws connections between computer nodes
   drawnodes(computer_nodes); //Draws computer nodes
-  if (exp(-avg_delta_cost/T)<0.1){
-    cooling_rate = 0.999; //Slows down cooling rate near the end of annealing for better results without greatly increasing iteration count/time
+  if (exp(-avg_delta_cost/T)<0.1) {
+    cooling_rate = 0.99; //Slows down cooling rate near the end of annealing for better results without greatly increasing iteration count/time
   }
-  
 }
 
 

@@ -43,20 +43,20 @@ void mousePressed() { //What happens when you click on the screen?
   else if (state==2) { //difficulty menu
     if (overButton(int(rect5))) {
       number_of_nodes = amount_of_nodes[0];
-      needs_setup =true;
-      do_once(1); //setup for state 1
+      timer_modifier = 0.5;
+      music_rate = 1;
       state=-1;
       return;
     } else if (overButton(int(rect6))) {
       number_of_nodes = amount_of_nodes[1];
-      needs_setup =true;
-      do_once(1); //setup for state 1
+      timer_modifier = 0.7;
+      music_rate = 1.2;
       state=-1;
       return;
     } else if (overButton(int(rect7))) {
+      timer_modifier = 0.7;
+      music_rate = 1.4;
       number_of_nodes = amount_of_nodes[2];
-      needs_setup =true;
-      do_once(1); //setup for state 1
       state=-1;
       return;
     }

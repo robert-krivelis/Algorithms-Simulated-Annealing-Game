@@ -10,6 +10,8 @@ color bg_color = #88c2c0; //Background color
 PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-vector-for-clip-art-students-png-13568
 PImage classroom_flipped;
 float timer;
+float [] timer_bar = {screen_x/2, screen_y/2-200, 50, 400};
+float timer_modifier = 0.7; //lower is slower
 
 void drawconnections(node [] nodes) {
   /* Input: node []
@@ -33,6 +35,44 @@ void drawsplit() { //Draws the cut between the two partitions
   line(midp2, 100, midp2, 500);
 }
 
+void drawtime() {
+  if (T>Tmin) {
+    text((millis()-timer)/100.0, 100, 20);// 400 450 480 less than 500
+  }
+  if (T<=Tmin) {
+    text("Computer done", 50, 20);
+  }
+  rectMode(CORNER);
+  noFill();
+  rect(screen_x/2-25, screen_y/2-200, 50, 400);
+  fill(230, 50, 50);
+  noStroke();
+  rect(timer_bar[0]-25, timer_bar[1], timer_bar[2], timer_bar[3]); //Changes the starting point of the bar
+  if (timer_bar[1] <screen_y/2-200 + 400) {
+    timer_bar[3] = timer_bar[3] - pow((millis()-timer), 0.5)/100*timer_modifier; //Changes the height of the bar
+    timer_bar[1] = timer_bar[1] + pow((millis()-timer), 0.5)/100*timer_modifier;
+  } else {
+    needs_setup = true;
+    state = 3; //end of game state
+  }
+  stroke(0);
+}
+void draw_end_game_screen() {
+  rectMode(CENTER);
+  fill(255, 255, 255, 200);
+  rect(screen_x/2, screen_y/2, screen_x-150, screen_y-100);
+  textSize(50);
+  fill(0);  
+  if ((int)(COST(nodes))>=(int)(COST(computer_nodes))) { //if player wins
+    text("You win!" ,screen_x/2, screen_y/2-100);
+  }
+  else{//computer wins
+     text("Computer wins!", screen_x/2, screen_y/2-100);
+  }
+  textSize(30);
+  text("Your Combined Happiness: " + (int)(COST(nodes))+"%", screen_x/2, screen_y/2-50);
+  text("Computer's Combined Happiness: " + (int)(COST(computer_nodes))+"%", screen_x/2, screen_y/2+50);
+}
 void drawnodes(node[] nodes) {
   /* Input: node []
    Output: Circle of each node is drawn and it's index number */
@@ -56,8 +96,6 @@ void drawplayarea() { //Draws pink play areas
   fill(255, 255-255*exp(-avg_delta_cost/T), 255-255*exp(-avg_delta_cost/T)) ; //Changes color of computer play area based on temp
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
   rectMode(CORNER);
-  text((millis()-timer)/100.0,100,20);// 400 450 480 less than 500
-  text((frameCount)/100.0,200,20); //14 15
 }
 
 void drawwords() { //Draws all words on the screen
@@ -67,7 +105,7 @@ void drawwords() { //Draws all words on the screen
   text("Player", midp1, 70);
   text("Simulated Annealing", midp2, 70);
   textFont(createFont("Georgia", 36));
-  text("Keep everyone happy!", screen_x/2, 40);
+  text("Make everyone happy!", screen_x/2, 40);
   textSize(14);
   text("A", midp2-5*textsize, 150);
   text("B", midp2+5*textsize, 150);
@@ -84,10 +122,11 @@ void drawwords() { //Draws all words on the screen
   text("Iterations completed: " + iteration, midp2+125, h-50);
   text("Current Temperature: " + nf(exp(-avg_delta_cost/T), 1, 2), midp2+125, h-30);
   text("Temperature Minimum: " + nf(T_min_p, 1, 2), midp2+125, h-10);
+  text("Time remaining", screen_x/2, screen_y/2+210);
 
   textSize(24);
-  text("Combined Happiness of player: " + (int)(COST(nodes))+"%", midp1, 520);
-  text("Combined Happiness of computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
+  text("Combined Happiness of Player: " + (int)(COST(nodes))+"%", midp1, 520);
+  text("Combined Happiness of Computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
   //each cut 10 percent
 }
 

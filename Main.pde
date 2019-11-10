@@ -1,9 +1,8 @@
 //Luke and Robert ENCM 507 Project phase 1, 2019
-
 //Fix difficulty levels so that time actually matters 3.
- 
+
 //Fix customize simulated annealing - Be able to input Cooling rate, min temp, max temp, num of nodes -- Wait this one is actually pretty easy I think?
-int [] amount_of_nodes = {5,10,15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
+int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
 int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
@@ -13,10 +12,10 @@ int game_modifier =0;
 
 /*
 State -1 = Instructions
-State 0 = Game selection
-State 1 = Base Game
-State 2 = Difficulty selection
-*/
+ State 0 = Game selection
+ State 1 = Base Game
+ State 2 = Difficulty selection
+ */
 
 void setup() {
   size(1200, 600);
@@ -33,7 +32,8 @@ void draw() {
     break;
   case 1:
     do_once(1);
-    drawplayarea(); //Draws the two player areas  
+    drawplayarea(); //Draws the two player areas 
+    drawtime(); //Draws time remaining
     drawimages();//Draws classroom clipart
     drawwords(); //Draws all the words
     drawconnections(nodes); //Draws node connections
@@ -44,6 +44,9 @@ void draw() {
   case 2:
     do_once(2); //setup for state 2 (difficulty screen)
     drawmenu_d();
+    break;
+  case 3:
+    do_once(3); //setup for state 3 (end game screen)
     break;
   default:
     println("You shouldn't be in here..");
