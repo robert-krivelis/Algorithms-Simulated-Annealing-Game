@@ -1,3 +1,4 @@
+boolean needs_setup=true;
 node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
 node [] new_partitions = new node[number_of_nodes];
@@ -79,5 +80,30 @@ void copy_nodes(node []new_nodes, node[] reference_nodes) { //Replicates nodes o
     new_nodes[i].partition = reference_nodes[i].partition;
     new_nodes[i].connections =  reference_nodes[i].connections;
     new_nodes[i].col = reference_nodes[i].col;
+  }
+}
+
+//The only thing that ever switches a state is pressing a button. Therefore after pressing a button needs_setup should be true
+void do_once(int state) {
+  if (state ==-1 && needs_setup==true) { //State =-1 (setup instruction screen)
+    instruction_screen();
+    needs_setup=false;
+  }
+  if (state ==0 && needs_setup==true) { //State = 0 (game selection). After this go to difficulty screen
+    setupselectionmenu();
+    needs_setup=false;
+  }
+  if (state==1 && needs_setup==true) { //State one initialization 
+    music();
+    initializenodes(nodes); //Initalizes nodes
+    createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
+    check_y_collisions(nodes); //Checks nodes do not collide
+    initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
+    simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
+    needs_setup=false;
+  }
+  if (state ==2 && needs_setup==true) {
+    setupselectionmenu_d();
+    needs_setup=false;
   }
 }

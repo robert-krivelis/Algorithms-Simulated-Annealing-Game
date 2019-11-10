@@ -5,7 +5,7 @@ float play_y = screen_y-200;
 float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
-int repetitions = 1;
+
 void drawconnections(node [] nodes) {
   for (int i=0; i<nodes.length; i++) {
     fill(0);
@@ -64,16 +64,4 @@ void drawwords() { //Draws all words on the screen
   text("Happiness of Computer: " + (int)(COST(computer_nodes))+"%", midp2, 520);
   text("Iterations completed: " + iteration, midp2, 50);
   //each cut 10 percent
-}
-
-void do_once(int state) {
-  if (state==1 && repetitions==1) {
-    music();
-    initializenodes(nodes); //Initalizes nodes
-    createnodes(nodes, number_of_nodes); //Populates nodes with values, gives them a partition and appropriate x location
-    check_y_collisions(nodes); //Checks nodes do not collide
-    initializecomputernodes(computer_nodes, nodes); //Initializes computer nodes
-    simulatedannealing(computer_nodes, 90, 0.01); //Simulatedly anneals the computer nodes into an optimal position.
-    repetitions --;
-  }
 }
