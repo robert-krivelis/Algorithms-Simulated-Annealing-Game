@@ -1,5 +1,6 @@
 //This code is literal spaghetti and I'm sorry
 
+//These are all global rectangles.
 float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
@@ -163,7 +164,7 @@ void drawnames() { //Draws our names! We did this
   textSize(14);
   fill(50);
   textAlign(RIGHT, BOTTOM);
-  text("ENCM PROJECT PHASE 1\n LUKE RENAUD - ROBERT KRIVELIS", w-15, h-15);
+  text("ENCM PROJECT PHASE 2\n LUKE RENAUD - ROBERT KRIVELIS", w-15, h-15);
   rectMode(CORNER);
 }
 

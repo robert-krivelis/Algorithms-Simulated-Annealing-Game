@@ -1,4 +1,6 @@
 public class node { //Contains the color, size, location, and neighbors of Nodes
+
+  // TODO add more characteristics like strings in here to represent degrees and such?
   int ID;
   int x;
   int y; 

@@ -1,4 +1,4 @@
-//Luke and Robert ENCM 507 Project phase 1, 2019
+//Luke and Robert ENCM 507 Project phase 2, 2019
 
 int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
 int number_of_nodes =  25; //Maximum number of nodes
@@ -16,7 +16,7 @@ State -1 = Instructions
  State 2 = Difficulty selection
  State 3 = End Game 
  State 4 = Custom inputs
- */
+*/
 
 void setup() {
   size(1200, 600);

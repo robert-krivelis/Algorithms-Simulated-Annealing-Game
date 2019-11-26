@@ -64,6 +64,17 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
   }
+  //For state 3 - Go back to main menu screen to play again //currently not working
+  else if (state==3) { 
+    //draw buttom here
+    fill(255);
+    rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    hover_i();
+    if (overButton(int(rect4))) { //If you click continue
+      state= -1;
+      return;
+    }
+  }
   //For state 4 - Input menu
   else if (state==4) { 
     if (overButton(int(rect4))) { //If you click continue
