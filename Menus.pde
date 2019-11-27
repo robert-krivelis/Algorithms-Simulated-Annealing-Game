@@ -6,7 +6,7 @@ float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
 float [] rect5, rect6, rect7;
 float []rect8= {w/2, h-50, 80, 45};
-String result = "";
+String result = "10,90,0.1,0.8,1,0.5";
 
 boolean overButton(int dimensions[]) {
   /* Input: int [] of a rectangle
@@ -184,7 +184,7 @@ void draw_input_screen() { //Draws very first screen with instructions/story
 void keyPressed() { //Checks for key presses for the input custom settings screen
   if (result.length()<25) {
     if (false) {
-    } else if (key == '2') {
+    } else if (key == '2') { //rob pls, why does this start with 2?
       result +='2';
     } else if (key == '1') {
       result +='1';

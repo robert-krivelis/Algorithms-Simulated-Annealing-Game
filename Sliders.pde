@@ -2,6 +2,8 @@
 //Using sliders created from a forum post: https://forum.processing.org/two/discussion/6783/making-a-slider
 int instancenum = 2;
 Test[] instances =  new Test[instancenum]; 
+String nodetext, temptext;
+
 //for (int i = 0; i<instancenum; i++){
 // intances[i].x =  
 //}
@@ -9,13 +11,25 @@ void mouseReleased() {
 
   //unlock
   if (state==4) {
+    String[] templist = split(result, ',');
+    int i = 0;
     for (Test t : instances)
     {
       t.lock = false;
     }
+    result = ""; // i"m tired, please find a better way
+    result += nodetext;
+    result += ',';
+    result += temptext;
+    result += ',';
+    i=2;
+    while (i<6) {
+      result += templist[i];
+      result += ',';
+      i++;
+    }
   }
 }
-
 class Test {
   //class vars
   float x;
@@ -50,7 +64,7 @@ class Test {
     fill(0);
     if (ID == 0) {
       maptop = 25; // for nodes the highest num is 25 
-      mapbot = 0;
+      mapbot = 1;
       text("Nodes", x+20, initialY-20);
     } else if (ID == 1) {
       maptop = 99; //for temp the highest number is 99
@@ -67,6 +81,11 @@ class Test {
 
     // map value to display
     float value2 = map(value, 120, 255, maptop, mapbot);
+    if (ID == 0) {
+      nodetext = str((int) value2); //I hate that this works, but it does for removing numbers after the decimal
+    } else if (ID == 1) {
+      temptext = str((int) value2);
+    }
 
     //set color as it changes
     color c = color(value);

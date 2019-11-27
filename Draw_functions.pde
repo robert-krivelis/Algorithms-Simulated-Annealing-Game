@@ -144,6 +144,7 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   fill(0);
   //textMode(CORNER);
   textAlign(LEFT, CENTER);
+  
   text (result, w/2-250, 55);
   textAlign(CENTER);
   if (millis()%2==0) {
