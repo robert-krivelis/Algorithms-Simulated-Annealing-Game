@@ -5,6 +5,7 @@ float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
 float [] rect5, rect6, rect7;
+float []rect8= {w/2, h-50, 80, 45};
 String result = "";
 
 boolean overButton(int dimensions[]) {
@@ -249,4 +250,13 @@ void convertinput() { //Converts string in the text box of custom game setup to 
       timer_modifier = float(temp); //lower is slower
     }
   }
+}
+
+void drawpause(){ //this is the pause button
+    fill(#88c4e0);
+    rectMode(CENTER);
+    rect(rect8[0], rect8[1], rect8[2], rect8[3]);
+    fill(0);
+    text("Pause", rect4[0], rect4[1]);
+    
 }

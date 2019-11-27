@@ -11,6 +11,7 @@ PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-ve
 PImage classroom_flipped;
 float timer;
 float [] timer_bar = {screen_x/2, screen_y/2-200, 50, 400};
+boolean paused = false;
 
 
 void drawconnections(node [] nodes) {
@@ -43,8 +44,10 @@ void drawtime() {
   noStroke();
   rect(timer_bar[0]-25, timer_bar[1], timer_bar[2], timer_bar[3]); //Changes the starting point of the bar
   if (timer_bar[1] <screen_y/2-200 + 400) {
+    if(!paused){
     timer_bar[3] = timer_bar[3] - pow((millis()-timer), 0.5)/100*timer_modifier; //Changes the height of the bar
     timer_bar[1] = timer_bar[1] + pow((millis()-timer), 0.5)/100*timer_modifier;
+    }
   } else {
     needs_setup = true;
     state = 3; //end of game state
@@ -94,11 +97,11 @@ void drawplayarea() { //Draws pink play areas
 }
 
 void drawwords() { //Draws all words on the screen
-  textSize(32);
+  textSize(40);
   fill(0);
   textAlign(CENTER, CENTER);
-  text("Player", midp1, 70);
-  text("Simulated Annealing", midp2, 70);
+  text("Player", midp1, 50);
+  text("Simulated Annealing", midp2, 50);
   textFont(createFont("Georgia", 36));
   textSize(14);
   text("A", midp2-5*textsize, 150);

@@ -1,4 +1,12 @@
 //Luke and Robert ENCM 507 Project phase 2, 2019
+//TODO: Custom input sanitation > sliders?
+//TODO: Computer speed slider?
+//TODO: Pause time button?
+//TODO: Happiness as nice visual
+//TODO: Rowdy students as a different visual rather than red line
+//TODO: Make into 4 classes
+//TODO: Happy and sad faces
+
 
 int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
 int number_of_nodes =  25; //Maximum number of nodes
@@ -16,7 +24,7 @@ State -1 = Instructions
  State 2 = Difficulty selection
  State 3 = End Game 
  State 4 = Custom inputs
-*/
+ */
 
 void setup() {
   size(1200, 600);
@@ -41,6 +49,7 @@ void draw() {
     drawnodes(nodes); //Draws all the nodes
     simulatedannealing(computer_nodes); //Simulatedly anneals the computer nodes into an optimal position.
     drawsplit(); //Draws partition
+    drawpause();
     break;
   case 2:
     do_once(2); //setup for state 2 (difficulty screen)
@@ -53,6 +62,8 @@ void draw() {
     do_once(4); //setup for state 4 (input screen)
     draw_input_screen(); 
     draw_text_box();
+    for (Test t : instances)
+      t.run();
     break;
   default:
     break;

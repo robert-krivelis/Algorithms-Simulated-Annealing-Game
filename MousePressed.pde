@@ -1,3 +1,5 @@
+
+
 void mousePressed() { //What happens when you click on the screen?
   /* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
   //For state -1 - Instructions
@@ -29,6 +31,9 @@ void mousePressed() { //What happens when you click on the screen?
   }
   //For state 1 - Game
   else if (state==1) {
+    if (overButton(int(rect8))) {
+      paused = !paused;
+    }
     for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
       if (state ==1 && mouseX > nodes[i].x-nodes[i].size/2 && mouseX < nodes[i].x+nodes[i].size/2 && mouseY > nodes[i].y-nodes[i].size/2 && mouseY < nodes[i].y+nodes[i].size/2) {// Check if you clicked on a node
         if (nodes[i].partition == 'a') {
@@ -68,15 +73,25 @@ void mousePressed() { //What happens when you click on the screen?
   else if (state==3) { 
     //draw buttom here
     fill(255);
-    rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    //rect(rect4[0], rect4[1], rect4[2], rect4[3]);
     hover_i();
-    if (overButton(int(rect4))) { //If you click continue
-      state= -1;
+    if (overButton(int(rect4)) && false) { //Do not look here
+      needs_setup = true;
+      state= 0;
       return;
     }
   }
   //For state 4 - Input menu
   else if (state==4) { 
+    //sliders:
+    //lock if clicked
+    for (Test t : instances)
+    {
+      if (t.isOver())
+        t.lock = true;
+    }
+    //end sliders
+
     if (overButton(int(rect4))) { //If you click continue
       state=1;
       result +=',';

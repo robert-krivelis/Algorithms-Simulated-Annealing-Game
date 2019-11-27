@@ -12,7 +12,7 @@ void initializenodes(node[] nodes) {
   }
 }
 void createnodes(node[] nodes, int n) {
-  /* Input: node []
+  /* Input: node [] and n which is number of nodes.
    Output: Fills in node array with meaningful values, giving a location, color, and partition to each node  */
   for (int i = 0; i<n; i++) {
     nodes[i].ID = i;
@@ -148,6 +148,14 @@ void do_once(int state) {
     needs_setup=false;
   }
   if (state ==4 && needs_setup==true) {
+    //Sliders
+    noStroke(); 
+    // init them: (xPos, yPos, width, height)
+    for (int i = 0; i<instancenum; i++) {
+      instances[i] = new Test(60*i + 20, 20, 40, 20);
+    }
+    stroke(0);
+
     needs_setup=false;
   }
 }
