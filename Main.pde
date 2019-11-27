@@ -1,4 +1,5 @@
 //Luke and Robert ENCM 507 Project phase 2, 2019
+//Student Seperation
 //TODO: Custom input sanitation > sliders?
 //TODO: Computer speed slider?
 //TODO: Pause time button?
@@ -12,7 +13,7 @@ int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, m
 int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
-float cooling_rate = 0.96; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.993; //How fast the temperature lowers, lower = faster. 
 float timer_modifier = 0.7; //lower is slower
 int state = 0;
 int game_modifier =0;
@@ -25,7 +26,9 @@ State -1 = Instructions
  State 3 = End Game 
  State 4 = Custom inputs
  */
-
+void setup() {
+  size(1200, 600);
+}
 void draw() {
   switch (state) {
   case -1:
@@ -47,6 +50,7 @@ void draw() {
     simulatedannealing(computer_nodes); //Simulatedly anneals the computer nodes into an optimal position.
     drawsplit(); //Draws partition
     drawpause();
+    holdnode();
     break;
   case 2:
     do_once(2); //setup for state 2 (difficulty screen)
@@ -54,6 +58,11 @@ void draw() {
     break;
   case 3:
     do_once(3); //setup for state 3 (end game screen)
+    fill(220);
+    rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    hover_i();
+    fill(0);
+    text("Main Menu", rect4[0], rect4[1]);
     break;
   case 4:
     do_once(4); //setup for state 4 (input screen)

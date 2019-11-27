@@ -1,5 +1,5 @@
-
-
+boolean node_locked = false;
+int locked_node = 0;
 void mousePressed() { //What happens when you click on the screen?
   /* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
   //For state -1 - Instructions
@@ -36,16 +36,19 @@ void mousePressed() { //What happens when you click on the screen?
     }
     for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
       if (state ==1 && mouseX > nodes[i].x-nodes[i].size/2 && mouseX < nodes[i].x+nodes[i].size/2 && mouseY > nodes[i].y-nodes[i].size/2 && mouseY < nodes[i].y+nodes[i].size/2) {// Check if you clicked on a node
-        if (nodes[i].partition == 'a') {
-          nodes[i].partition = 'b';
-          nodes[i].x += 300-50;
-        } else {
-          nodes[i].partition = 'a';
-          nodes[i].x -= 300-50;
-        }
-        check_y_collisions(nodes);
+         node_locked = true;
+         locked_node = i;
+        //if (nodes[i].partition == 'a') {
+        //  nodes[i].partition = 'b';
+        //  nodes[i].x += 300-50;
+        //} else {
+        //  nodes[i].partition = 'a';
+        //  nodes[i].x -= 300-50;
+        //}
+        
       }
     }
+    
   }
   //For state 2 - Difficulty menu
   else if (state==2) { 
@@ -73,11 +76,16 @@ void mousePressed() { //What happens when you click on the screen?
   else if (state==3) { 
     //draw buttom here
     fill(255);
-    //rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-    hover_i();
-    if (overButton(int(rect4)) && false) { //Do not look here. Top secret.
+    // rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    // hover_i();
+    if (overButton(int(rect4))) { //Top secret code
       needs_setup = true;
-      state= 0;
+      state = 0;
+      paused = false;
+      timer_bar[0] = screen_x/2;
+      timer_bar[1] = screen_y/2-200;
+      timer_bar[2] =50;
+      timer_bar[3] = 400;
       return;
     }
   }

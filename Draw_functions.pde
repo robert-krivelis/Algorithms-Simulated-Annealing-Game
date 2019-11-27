@@ -110,16 +110,19 @@ void drawwords() { //Draws all words on the screen
   text("B", midp1+5*textsize, 150);
   //Calculate balance is just percentage of nodes that are on the left. 100 - 50-50/50
   textAlign(CENTER, CENTER); 
-  text("Net cuts of Player: " +calculatecost(nodes), midp1, 550);
+  text("Net cuts of Player: " +calculatecost(nodes), midp1-100, 550);
   text("Net cuts of Computer: " +calculatecost(computer_nodes), midp2-125, 550);
-  text("Happiness of Students: " +(100-calculatecost(nodes)*10)+ "%", midp1, 570); //%error is (e-t)/t
+  text("Happiness of Students: " +(100-calculatecost(nodes)*10)+ "%", midp1-100, 570); //%error is (e-t)/t
   text("Happiness of Students: " +(100-calculatecost(computer_nodes)*10)+ "%", midp2-125, 570); //%error is (e-t)/t
-  text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(nodes)-50)/50.0)*100.0)+ "%", midp1, 590); //%error is (e-t)/t
+  text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(nodes)-50)/50.0)*100.0)+ "%", midp1-100, 590); //%error is (e-t)/t
   text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(computer_nodes)-50)/50.0)*100.0)+ "%", midp2-125, 590); //%error is (e-t)/t
   text("Iterations completed: " + iteration, midp2+125, h-50);
   text("Current Temperature: " + nf(exp(-avg_delta_cost/T), 1, 2), midp2+125, h-30);
   text("Temperature Minimum: " + nf(T_min_p, 1, 2), midp2+125, h-10);
   text("Time remaining", screen_x/2, screen_y/2+210);
+  if (game_modifier == 1){
+    text("Rowdy Students Seperated: " +calculateanticost(nodes),  midp1+100, 570);
+  }
 
   textSize(24);
   text("Combined Happiness of Player: " + (int)(COST(nodes))+"%", midp1, 520);
@@ -152,4 +155,13 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   }
   text ("Enter desired values, seperated by commas", w/2, 120);
   text ("Number of nodes(max 25),\nInitial temperature(max 99),\nMinimum temperature(min 0.0001),\nCooling rate(max 0.999),\nGame mode for regular or rowdy students(0 or 1),\nTime Modifier(0.1<x<1, 1 is fastest)", w/2, 180);
+}
+
+void holdnode(){ 
+  if (node_locked == true && mouseX<midp1+250-nodes[0].size/2 && mouseX>midp1-250+nodes[0].size/2 ){//
+    nodes[locked_node].x = mouseX;
+  }
+  if (node_locked == true && mouseY<500-nodes[0].size/2 && mouseY>100+nodes[0].size/2){
+    nodes[locked_node].y = mouseY;
+  }
 }

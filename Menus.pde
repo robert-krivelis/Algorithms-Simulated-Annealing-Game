@@ -257,6 +257,12 @@ void drawpause(){ //this is the pause button
     rectMode(CENTER);
     rect(rect8[0], rect8[1], rect8[2], rect8[3]);
     fill(0);
-    text("Pause", rect4[0], rect4[1]);
-    
+    text("Pause", rect4[0], rect4[1]); 
+}
+void drawrestart(){ //this is the restart button
+    fill(#88c4e0);
+    rectMode(CENTER);
+    rect(rect8[0], rect8[1], rect8[2], rect8[3]);
+    fill(0);
+    text("Pause", rect4[0], rect4[1]); 
 }

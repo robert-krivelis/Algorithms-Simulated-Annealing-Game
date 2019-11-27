@@ -17,7 +17,7 @@ void mouseReleased() {
     {
       t.lock = false;
     }
-    result = ""; // i"m tired, please find a better way
+    result = ""; // i"m tired, please find a better way 
     result += nodetext;
     result += ',';
     result += temptext;
@@ -29,6 +29,17 @@ void mouseReleased() {
       i++;
     }
   }
+  if (state==1){
+    check_y_collisions(nodes);
+    node_locked = false;
+    if (nodes[locked_node].x>midp1){
+      nodes[locked_node].partition = 'b';
+    }
+    if (nodes[locked_node].x<midp1){
+      nodes[locked_node].partition = 'a';
+    }
+  }
+  
 }
 class Test {
   //class vars
