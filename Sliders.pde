@@ -1,10 +1,10 @@
 // array to hold all sliders
 //Using sliders created from a forum post: https://forum.processing.org/two/discussion/6783/making-a-slider
-int instancenum = 10;
+int instancenum = 2;
 Test[] instances =  new Test[instancenum]; 
-for (int i = 0; i<instancenum; i++){
- intances[i].x =  
-}
+//for (int i = 0; i<instancenum; i++){
+// intances[i].x =  
+//}
 void mouseReleased() {
 
   //unlock
@@ -23,6 +23,8 @@ class Test {
   float w, h;
   float initialY;
   boolean lock = false;
+  int ID;
+
 
   //constructors
 
@@ -30,26 +32,41 @@ class Test {
   Test () {
   }
 
-  Test (float _x, float _y, float _w, float _h) {
+  Test (float _x, float _y, float _w, float _h, int _ID) {
 
     x=_x;
     y=_y;
     initialY = y;
     w=_w;
     h=_h;
+    ID = _ID;
   }
 
 
   void run() {
+    int maptop, mapbot; 
+    maptop = mapbot = 0;
+    textSize(12);
+    fill(0);
+    if (ID == 0) {
+      maptop = 25; // for nodes the highest num is 25 
+      mapbot = 0;
+      text("Nodes", x+20, initialY-20);
+    } else if (ID == 1) {
+      maptop = 99; //for temp the highest number is 99
+      mapbot = 0;
+      text("Initial \n  temp", x+20, initialY-20);
+    }
+
 
     // bad practice have all stuff done in one method...
-    float lowerY = height - h - initialY - 50;
+    float lowerY = height - h - initialY; // size of window - h - initial Y
 
     // map value to change color..
     float value = map(y, initialY, lowerY, 120, 255);
 
     // map value to display
-    float value2 = map(value, 120, 255, 100, 0);
+    float value2 = map(value, 120, 255, maptop, mapbot);
 
     //set color as it changes
     color c = color(value);
@@ -57,7 +74,8 @@ class Test {
     rectMode(CORNER);
     // draw base line
     noStroke();
-    rect(x, initialY, 4, lowerY);
+    lowerY -= initialY;
+    rect(x, initialY, 4, lowerY + h);
     stroke(0);
     // draw knob
     fill(200);
@@ -66,7 +84,7 @@ class Test {
     // display text
     fill(0);
     textSize(12);
-    text(int(value2) +"%", x+20, y+15);
+    text(int(value2), x+20, y+15);
 
     //get mouseInput and map it
     float my = constrain(mouseY, initialY, height - h - initialY );

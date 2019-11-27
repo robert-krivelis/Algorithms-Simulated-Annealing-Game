@@ -11,7 +11,7 @@ PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-ve
 PImage classroom_flipped;
 float timer;
 float [] timer_bar = {screen_x/2, screen_y/2-200, 50, 400};
-boolean paused = false;
+boolean paused = false; //this is for the pause button
 
 
 void drawconnections(node [] nodes) {
@@ -44,9 +44,9 @@ void drawtime() {
   noStroke();
   rect(timer_bar[0]-25, timer_bar[1], timer_bar[2], timer_bar[3]); //Changes the starting point of the bar
   if (timer_bar[1] <screen_y/2-200 + 400) {
-    if(!paused){
-    timer_bar[3] = timer_bar[3] - pow((millis()-timer), 0.5)/100*timer_modifier; //Changes the height of the bar
-    timer_bar[1] = timer_bar[1] + pow((millis()-timer), 0.5)/100*timer_modifier;
+    if (!paused) {
+      timer_bar[3] = timer_bar[3] - pow((millis()-timer), 0.5)/100*timer_modifier; //Changes the height of the bar
+      timer_bar[1] = timer_bar[1] + pow((millis()-timer), 0.5)/100*timer_modifier;
     }
   } else {
     needs_setup = true;
@@ -136,6 +136,7 @@ void drawimages() { //Draws classroom images during game
   image(classroom_flipped, midp2, h/2-80, 250, 230);
 }
 void draw_text_box() { //Draws the text box in the custom input screen and the text on that screen
+
   rectMode(CENTER);
   fill(200, 202, 202); 
   textSize(30);
@@ -145,7 +146,7 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   textAlign(LEFT, CENTER);
   text (result, w/2-250, 55);
   textAlign(CENTER);
-  if (millis()%2==0){
+  if (millis()%2==0) {
     line(w/2-249 + result.length()*13, 78, w/2-235+ result.length()*13, 78);
   }
   text ("Enter desired values, seperated by commas", w/2, 120);

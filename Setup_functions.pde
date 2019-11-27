@@ -152,7 +152,7 @@ void do_once(int state) {
     noStroke(); 
     // init them: (xPos, yPos, width, height)
     for (int i = 0; i<instancenum; i++) {
-      instances[i] = new Test(60*i + 20, 20, 40, 20);
+      instances[i] = new Test(100*i + 40, 80, 40, 20, i);
     }
     stroke(0);
 

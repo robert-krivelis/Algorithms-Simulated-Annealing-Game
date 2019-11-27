@@ -26,9 +26,6 @@ State -1 = Instructions
  State 4 = Custom inputs
  */
 
-void setup() {
-  size(1200, 600);
-}
 void draw() {
   switch (state) {
   case -1:
