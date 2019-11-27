@@ -5,7 +5,7 @@ void mousePressed() { //What happens when you click on the screen?
   //For state -1 - Instructions
   if (state==-1) {
     if (overButton(int(rect4))) {
-      state=1;
+      state=5;
       needs_setup =true;
       return;
     }
@@ -33,6 +33,10 @@ void mousePressed() { //What happens when you click on the screen?
   else if (state==1) {
     if (overButton(int(rect8))) {
       paused = !paused;
+    }
+    if (overButton(int(rect9))) {
+      timer_bar[1] =screen_y/2-202 + 400;
+      timer_bar[3] =0;
     }
     for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
       if (state ==1 && mouseX > nodes[i].x-nodes[i].size/2 && mouseX < nodes[i].x+nodes[i].size/2 && mouseY > nodes[i].y-nodes[i].size/2 && mouseY < nodes[i].y+nodes[i].size/2) {// Check if you clicked on a node
@@ -104,6 +108,13 @@ void mousePressed() { //What happens when you click on the screen?
       state=1;
       result +=',';
       convertinput(); //reads string
+      needs_setup = true;
+      return;
+    }
+  }
+  else if (state ==5){
+     if (overButton(int(rect4))) { //If you click continue
+      state=1;
       needs_setup = true;
       return;
     }

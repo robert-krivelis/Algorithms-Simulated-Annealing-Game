@@ -97,9 +97,9 @@ void drawplayarea() { //Draws pink play areas
 }
 
 void drawwords() { //Draws all words on the screen
-  textSize(40);
   fill(0);
   textAlign(CENTER, CENTER);
+  textFont(createFont("Agency FB Bold", 40));
   text("Player", midp1, 50);
   text("Simulated Annealing", midp2, 50);
   textFont(createFont("Georgia", 36));
@@ -110,7 +110,7 @@ void drawwords() { //Draws all words on the screen
   text("B", midp1+5*textsize, 150);
   //Calculate balance is just percentage of nodes that are on the left. 100 - 50-50/50
   textAlign(CENTER, CENTER); 
-  text("Net cuts of Player: " +calculatecost(nodes), midp1-100, 550);
+  text("Net cuts of Player: " +calculatecost(nodes), midp1-125, 550);
   text("Net cuts of Computer: " +calculatecost(computer_nodes), midp2-125, 550);
   text("Happiness of Students: " +(100-calculatecost(nodes)*10)+ "%", midp1-100, 570); //%error is (e-t)/t
   text("Happiness of Students: " +(100-calculatecost(computer_nodes)*10)+ "%", midp2-125, 570); //%error is (e-t)/t

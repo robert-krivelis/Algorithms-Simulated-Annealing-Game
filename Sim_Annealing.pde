@@ -52,7 +52,7 @@ void PERTURB(node[] nodes, int balance_min) {
 
 float COST(node [] nodes) { //Calculates the score of a set of nodes
   if (game_modifier==1) {
-    return (int)(70-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes) + 10*calculateanticost(nodes));
+      return (int)(70-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes) + 10*calculateanticost(nodes));
   }
   return (int)(100-abs(50-calculatebalance(nodes)) - 10*calculatecost(nodes));
 }

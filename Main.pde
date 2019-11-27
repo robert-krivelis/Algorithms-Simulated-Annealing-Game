@@ -8,12 +8,11 @@
 //TODO: Make into 4 classes
 //TODO: Happy and sad faces
 
-
 int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
 int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
-float cooling_rate = 0.993; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.985; //How fast the temperature lowers, lower = faster. 
 float timer_modifier = 0.7; //lower is slower
 int state = 0;
 int game_modifier =0;
@@ -50,6 +49,7 @@ void draw() {
     simulatedannealing(computer_nodes); //Simulatedly anneals the computer nodes into an optimal position.
     drawsplit(); //Draws partition
     drawpause();
+    drawfinish();
     holdnode();
     break;
   case 2:
@@ -70,6 +70,10 @@ void draw() {
     draw_text_box();
     for (Test t : instances)
       t.run();
+    break;
+  case 5:
+    do_once(5);
+    draw_instructions_pic();
     break;
   default:
     break;

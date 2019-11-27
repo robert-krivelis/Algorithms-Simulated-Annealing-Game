@@ -5,7 +5,8 @@ float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
 float [] rect5, rect6, rect7;
-float []rect8= {w/2, h-50, 80, 45};
+float []rect8= {w/2, h-60, 70, 35};
+float []rect9= {w/2, h-20, 70, 35};
 String result = "10,90,0.1,0.8,1,0.5";
 
 boolean overButton(int dimensions[]) {
@@ -252,17 +253,57 @@ void convertinput() { //Converts string in the text box of custom game setup to 
   }
 }
 
-void drawpause(){ //this is the pause button
-    fill(#88c4e0);
-    rectMode(CENTER);
-    rect(rect8[0], rect8[1], rect8[2], rect8[3]);
-    fill(0);
-    text("Pause", rect4[0], rect4[1]); 
+void drawpause() { //this is the pause button
+  fill(#88c4e0);
+  rectMode(CENTER);
+  rect(rect8[0], rect8[1], rect8[2], rect8[3]);
+  fill(0);
+  text("Pause", rect8[0], rect8[1]);
 }
-void drawrestart(){ //this is the restart button
-    fill(#88c4e0);
-    rectMode(CENTER);
-    rect(rect8[0], rect8[1], rect8[2], rect8[3]);
-    fill(0);
-    text("Pause", rect4[0], rect4[1]); 
+void drawrestart() { //this is the restart button
+  fill(#88c4e0);
+  rectMode(CENTER);
+  rect(rect8[0], rect8[1], rect8[2], rect8[3]);
+  fill(0);
+  text("Pause", rect8[0], rect8[1]);
+}
+
+void drawfinish() { //this is the restart button
+  fill(#88c4e0);
+  rectMode(CENTER);
+  rect(rect9[0], rect9[1], rect9[2], rect9[3]);
+  fill(0);
+  text("Finish", rect9[0], rect9[1]); 
+  paused = false;
+}
+void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
+  background(bg_color);
+  imageMode(CENTER);
+  //image(instructions_pic, w/2, h/2-100, 506, 450); 
+  imageMode(CORNER);
+  rectMode(CENTER);
+  fill(255);
+  rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  hover_i();
+  fill(0);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  text("Continue", w/2, h-55);
+
+  //DRAWS PLAY AREA
+  rectMode(CENTER);
+  fill(255);
+  rect(screen_x/2, screen_y/2, screen_x/2-100, play_y);
+  rectMode(CORNER);
+  //DRAWS LETTERS AND LINE
+  fill(0);
+  textFont(createFont("Georgia", 36));
+  text("A", w/2-5*textsize, 150);
+  text("B", w/2+5*textsize, 150);
+  line(w/2, 100, w/2, 500);
+  //DRAWS NODES TO PRACTICE ON
+}
+
+//TO DO: INSTRUCTIONS SCREEN TO WATCH SIM ANNEALING
+void draw_sim_annealing_example() {
 }

@@ -155,7 +155,9 @@ void do_once(int state) {
       instances[i] = new Test(100*i + 40, 80, 40, 20, i);
     }
     stroke(0);
-
     needs_setup=false;
+  }
+  if (state ==5 && needs_setup==true) {
+    needs_setup =false;
   }
 }
