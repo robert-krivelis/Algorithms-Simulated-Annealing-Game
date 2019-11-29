@@ -25,6 +25,7 @@ void mousePressed() { //What happens when you click on the screen?
       return;
     }
     if (overButton(int(rect3))) { //If you click on the third button
+      result = "25,99,0.1,0.8,1,0.5"; // default option 
       state=4; //Go to input screen
       needs_setup =true;
       return;

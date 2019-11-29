@@ -63,9 +63,9 @@ void draw() {
     break;
   case 3:
     do_once(3); //setup for state 3 (end game screen)
-    fill(220);
+    fill(#FFCF9C);
     rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-    hover_i();
+    hover();
     fill(0);
     text("Main Menu", rect4[0], rect4[1]);
     break;

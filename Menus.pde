@@ -4,10 +4,12 @@
 float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
 float []rect4= {w/2, h-50, 200, 80};
-float [] rect5, rect6, rect7;
+float []rect5 ={0,0,0,0};
+float []rect6 ={0,0,0,0};
+float []rect7={0,0,0,0};
 float []rect8= {w/2, h-60, 70, 35};
 float []rect9= {w/2, h-20, 70, 35};
-String result = "10,90,0.1,0.8,1,0.5";
+String result;
 
 boolean overButton(int dimensions[]) {
   /* Input: int [] of a rectangle
@@ -28,7 +30,7 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
   rectMode(CENTER);
   fill(255);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-  hover_i();
+  hover();
   fill(0);
   textSize(40);
   textAlign(CENTER, CENTER);
@@ -49,12 +51,28 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
   drawnames();
 }
 
-void hover_i() { //Changes buttons based on if you are hovering above them or not
-  if (overButton(int(rect4))) {
-    fill(200);
+//***Hover functions used for changing colours of buttons when hovered over with the mouse.
+
+color hovercol = #FFCF9C ;
+void hover() { //Changes buttons based on if you are hovering above them or not
+  fill(hovercol);
+  if (overButton(int(rect4)) && (state == 3 || state == 4|| state == 5|| state == 6|| state == -1)) {
     rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  } else if (overButton(int(rect1)) && (state == 2 || state == 0)) {
+    rect(rect1[0], rect1[1], rect1[2], rect1[3]);
+  } else if (overButton(int(rect2)) && (state == 2 || state == 0)) {
+    rect(rect2[0], rect2[1], rect2[2], rect2[3]);
+  } else if (overButton(int(rect3)) && (state == 2 || state == 0)) {
+    rect(rect3[0], rect3[1], rect3[2], rect3[3]);
+  } else if (overButton(int(rect5)) && (state == 2 || state == 0)) {
+    rect(rect5[0], rect5[1], rect5[2], rect5[3]);
+  } else if (overButton(int(rect6)) && (state == 2 || state == 0)) {
+    rect(rect6[0], rect6[1], rect6[2], rect6[3]);
+  } else if (overButton(int(rect7)) && (state == 2 || state == 0)) {
+    rect(rect7[0], rect7[1], rect7[2], rect7[3]);
   }
 }
+
 
 void setupselectionmenu() { //Sets up menu where you can select different play styles
   rect1 = new float[4];
@@ -75,10 +93,10 @@ void setupselectionmenu() { //Sets up menu where you can select different play s
   rect3[2] = w*0.7;
   rect3[3] = h*0.15;
 }
-
+color buttoncol = #E8F1F2;
 void drawmenu() { //Draws menu where you can select different play styles
   background(bg_color);
-  fill(255);
+  fill(buttoncol );
   rectMode(CENTER);
   rect(rect1[0], rect1[1], rect1[2], rect1[3]);
   rect(rect2[0], rect2[1], rect2[2], rect2[3]);
@@ -87,8 +105,11 @@ void drawmenu() { //Draws menu where you can select different play styles
   fill(0);
   textAlign(CENTER, CENTER);
   textFont(createFont("Agency FB Bold", 64));
-  textSize(64);
-  text("Student Seperation", w/2, 100);
+  textSize(80);
+  fill(255);
+  text("Student Separation", w/2 + 3, 100 + 3);
+  fill(0);
+  text("Student Separation", w/2, 100);
   textFont(createFont("Georgia", 32));
   textSize(32);
   text("1. Seperate kids based on friendships", rect1[0], rect1[1]); //Add difficulties
@@ -97,18 +118,7 @@ void drawmenu() { //Draws menu where you can select different play styles
   drawnames();
 }
 
-void hover() { //Changes buttons based on if you are hovering above them or not
-  if (overButton(int(rect1))) {
-    fill(200);
-    rect(rect1[0], rect1[1], rect1[2], rect1[3]);
-  } else if (overButton(int(rect2))) {
-    fill(200);
-    rect(rect2[0], rect2[1], rect2[2], rect2[3]);
-  } else if (overButton(int(rect3))) {
-    fill(200);
-    rect(rect3[0], rect3[1], rect3[2], rect3[3]);
-  }
-}
+
 
 void setupselectionmenu_d() { //Sets up difficulty menu
   rect5 = new float[4];
@@ -148,18 +158,7 @@ void drawmenu_d() { //Draws difficulty menu
   drawnames();
 }
 
-void hover_d() { //Changes buttons based on if you are hovering above them or not
-  if (overButton(int(rect5))) {
-    fill(200);
-    rect(rect5[0], rect5[1], rect5[2], rect5[3]);
-  } else if (overButton(int(rect6))) {
-    fill(200);
-    rect(rect6[0], rect6[1], rect6[2], rect6[3]);
-  } else if (overButton(int(rect7))) {
-    fill(200);
-    rect(rect7[0], rect7[1], rect7[2], rect7[3]);
-  }
-}
+
 
 void drawnames() { //Draws our names! We did this
   textFont(createFont("Georgia", 32));
@@ -175,7 +174,7 @@ void draw_input_screen() { //Draws very first screen with instructions/story
   rectMode(CENTER);
   fill(255);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-  hover_i();
+  hover();
   fill(0);
   textSize(40);
   textAlign(CENTER, CENTER);
@@ -252,9 +251,9 @@ void convertinput() { //Converts string in the text box of custom game setup to 
     }
   }
 }
-
+ color pauscol = #88c4e0;
 void drawpause() { //this is the pause button
-  fill(#88c4e0);
+  fill(pauscol);
   rectMode(CENTER);
   rect(rect8[0], rect8[1], rect8[2], rect8[3]);
   fill(0);
@@ -262,11 +261,11 @@ void drawpause() { //this is the pause button
 }
 
 void drawfinish() { //this is the restart button
-  fill(#88c4e0);
+  fill(pauscol);
   rectMode(CENTER);
   rect(rect9[0], rect9[1], rect9[2], rect9[3]);
   fill(0);
-  text("Finish", rect9[0], rect9[1]); 
+  text("Finish", rect9[0], rect9[1]);
 }
 void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   background(bg_color);
@@ -276,7 +275,7 @@ void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   rectMode(CENTER);
   fill(255);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-  hover_i();
+  hover();
   fill(0);
   textFont(createFont("Georgia", 40));
   textAlign(CENTER, CENTER);
@@ -322,7 +321,7 @@ void draw_sim_demo() {
   rectMode(CENTER);
   fill(255);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-  hover_i();
+  hover();
   fill(0);
   textFont(createFont("Georgia", 20));
   textAlign(CENTER, CENTER);
@@ -344,12 +343,11 @@ void draw_sim_demo() {
   drawconnections(sim_nodes);
   drawnodes(sim_nodes);
   textSize(30);
-  textAlign(CENTER,CENTER);
+  textAlign(CENTER, CENTER);
   text("Score: " + (int)(COST(sim_nodes))+"%", w/2 + 400, h/2-50);
   textSize(20);
   text("Iteration: " + iteration, w/2 + 400, h/2);
-  text("Watch the red circle to see which \nmove was just taken.\n\n If temperature is high, a \nmove is more likely to be taken. \n\nWhen temperature is low, more\niterations happen\nwithout moving a node." ,w/2 - 425, h/2);
+  text("Watch the red circle to see which \nmove was just taken.\n\n If temperature is high, a \nmove is more likely to be taken. \n\nWhen temperature is low, more\niterations happen\nwithout moving a node.", w/2 - 425, h/2);
   text("Current Temperature: " + (nf(100*exp(-avg_delta_cost/T), 1, 2)) + "%", w/2+ 400, h/2+30);
   text("Temperature Minimum: " + nf(T_min_p, 1, 2) + "%", w/2 +400, h/2+60);
-  
 }

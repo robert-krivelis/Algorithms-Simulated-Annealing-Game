@@ -6,7 +6,7 @@ float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
 int game_started; //For time purposes
-color bg_color = #88c2c0; //Background color
+color bg_color = #21D19F; //Background color
 PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-vector-for-clip-art-students-png-13568
 PImage classroom_flipped;
 float timer;
