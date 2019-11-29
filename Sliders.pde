@@ -29,17 +29,26 @@ void mouseReleased() {
       i++;
     }
   }
-  if (state==1){
+  if (state==1) { 
     check_y_collisions(nodes);
     node_locked = false;
-    if (nodes[locked_node].x>midp1){
+    if (nodes[locked_node].x>midp1) {
       nodes[locked_node].partition = 'b';
     }
-    if (nodes[locked_node].x<midp1){
+    if (nodes[locked_node].x<midp1) {
       nodes[locked_node].partition = 'a';
     }
   }
-  
+  else if (state==5) {
+    check_y_collisions(practice_nodes);
+    node_locked = false;
+    if (practice_nodes[locked_node].x>w/2) {
+      practice_nodes[locked_node].partition = 'b';
+    }
+    if (practice_nodes[locked_node].x<w/2) {
+      practice_nodes[locked_node].partition = 'a';
+    }
+  }
 }
 class Test {
   //class vars
@@ -121,7 +130,7 @@ class Test {
     if (lock) y = my;
   }
 
-  // is mouse ove knob?
+  // is mouse over knob?
   boolean isOver()
   {
     return (x+w >= mouseX) && (mouseX >= x) && (y+h >= mouseY) && (mouseY >= y);

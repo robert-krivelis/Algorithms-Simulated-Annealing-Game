@@ -286,10 +286,13 @@ void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
   hover_i();
   fill(0);
-  textSize(40);
+  textFont(createFont("Georgia", 40));
   textAlign(CENTER, CENTER);
   text("Continue", w/2, h-55);
 
+
+  textFont(createFont("Agency FB Bold", 60));
+  text("Practice moving students!", w/2, 55);
   //DRAWS PLAY AREA
   rectMode(CENTER);
   fill(255);
@@ -301,7 +304,22 @@ void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
   text("A", w/2-5*textsize, 150);
   text("B", w/2+5*textsize, 150);
   line(w/2, 100, w/2, 500);
+  textSize(20);
+  if (calculatecost(practice_nodes)==1) {
+    fill(200, 25, 25);
+  } else if (calculatecost(practice_nodes)==0) {
+    fill(25, 100, 25);
+  }
+  text("Broken Connections: " + calculatecost(practice_nodes), 150, h/2+50);
+  if ((int)(100-abs((calculatebalance(practice_nodes)-50)/50.0)*100.0)==0) {
+    fill(200, 25, 25);
+  } else if ((int)(100-abs((calculatebalance(practice_nodes)-50)/50.0)*100.0)==100) {
+    fill(25, 100, 25);
+  }
+  text("Balance: " +(int)(100-abs((calculatebalance(practice_nodes)-50)/50.0)*100.0)+ "%", 150, h/2-50);
   //DRAWS NODES TO PRACTICE ON
+  drawconnections(practice_nodes);
+  drawnodes(practice_nodes);
 }
 
 //TO DO: INSTRUCTIONS SCREEN TO WATCH SIM ANNEALING

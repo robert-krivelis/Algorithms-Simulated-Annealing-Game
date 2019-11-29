@@ -12,18 +12,20 @@ int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, m
 int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
-float cooling_rate = 0.985; //How fast the temperature lowers, lower = faster. 
+float cooling_rate = 0.98; //How fast the temperature lowers, lower = faster. 
 float timer_modifier = 0.7; //lower is slower
 int state = 0;
 int game_modifier =0;
 
 /*
 State -1 = Instructions
- State 0 = Game selection
+ State 0 = Game selection (Starting Screen)
  State 1 = Base Game
  State 2 = Difficulty selection
  State 3 = End Game 
  State 4 = Custom inputs
+ State 5 = Practice Movement
+ State 6 = Simm annealing demonstration
  */
 void setup() {
   size(1200, 600);
@@ -33,10 +35,12 @@ void draw() {
   case -1:
     do_once(-1); //setup for state -1
     draw_instruction_screen();
+    draw_state();
     break;
   case 0:
     do_once(0); //setup for state 0
     drawmenu();
+    draw_state();
     break;
   case 1:
     do_once(1);
@@ -50,11 +54,12 @@ void draw() {
     drawsplit(); //Draws partition
     drawpause();
     drawfinish();
-    holdnode();
+    holdnode(nodes);
     break;
   case 2:
     do_once(2); //setup for state 2 (difficulty screen)
     drawmenu_d();
+    draw_state();
     break;
   case 3:
     do_once(3); //setup for state 3 (end game screen)
@@ -68,12 +73,15 @@ void draw() {
     do_once(4); //setup for state 4 (input screen)
     draw_input_screen(); 
     draw_text_box();
+    draw_state();
     for (Test t : instances)
       t.run();
     break;
   case 5:
-    do_once(5);
-    draw_instructions_pic();
+    do_once(5); //practice movement screen
+    draw_instructions_pic(); 
+    draw_state();
+    holdpracticenode(practice_nodes);
     break;
   default:
     break;

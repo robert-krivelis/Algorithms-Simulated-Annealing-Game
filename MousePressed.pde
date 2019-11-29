@@ -1,5 +1,6 @@
 boolean node_locked = false;
 int locked_node = 0;
+int difficulty = 1;
 void mousePressed() { //What happens when you click on the screen?
   /* This process carries out state changes when menu buttons are pressed, and node swaps when nodes are clicked */
   //For state -1 - Instructions
@@ -40,30 +41,21 @@ void mousePressed() { //What happens when you click on the screen?
     }
     for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
       if (state ==1 && mouseX > nodes[i].x-nodes[i].size/2 && mouseX < nodes[i].x+nodes[i].size/2 && mouseY > nodes[i].y-nodes[i].size/2 && mouseY < nodes[i].y+nodes[i].size/2) {// Check if you clicked on a node
-         node_locked = true;
-         locked_node = i;
-        //if (nodes[i].partition == 'a') {
-        //  nodes[i].partition = 'b';
-        //  nodes[i].x += 300-50;
-        //} else {
-        //  nodes[i].partition = 'a';
-        //  nodes[i].x -= 300-50;
-        //}
-        
+        node_locked = true;
+        locked_node = i;
       }
     }
-    
   }
   //For state 2 - Difficulty menu
   else if (state==2) { 
     if (overButton(int(rect5))) { //If you click on the first button
-      number_of_nodes = amount_of_nodes[0];
+      difficulty = amount_of_nodes[0];
       timer_modifier = 0.5;
       music_rate = 1;
       state=-1;
       return;
     } else if (overButton(int(rect6))) {//If you click on the second button
-      number_of_nodes = amount_of_nodes[1];
+      difficulty = amount_of_nodes[1];
       timer_modifier = 0.7;
       music_rate = 1.2;
       state=-1;
@@ -71,7 +63,7 @@ void mousePressed() { //What happens when you click on the screen?
     } else if (overButton(int(rect7))) {//If you click on the third button
       timer_modifier = 0.9;
       music_rate = 1.4;
-      number_of_nodes = amount_of_nodes[2];
+      difficulty = amount_of_nodes[2];
       state=-1;
       return;
     }
@@ -111,12 +103,18 @@ void mousePressed() { //What happens when you click on the screen?
       needs_setup = true;
       return;
     }
-  }
-  else if (state ==5){
-     if (overButton(int(rect4))) { //If you click continue
+  } else if (state ==5) {
+    if (overButton(int(rect4))) { //If you click continue
+      number_of_nodes = difficulty;
       state=1;
       needs_setup = true;
       return;
+    }
+    for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
+      if (state ==5 && mouseX > practice_nodes[i].x-practice_nodes[i].size/2 && mouseX < practice_nodes[i].x+practice_nodes[i].size/2 && mouseY > practice_nodes[i].y-practice_nodes[i].size/2 && mouseY < practice_nodes[i].y+practice_nodes[i].size/2) {// Check if you clicked on a node
+        node_locked = true;
+        locked_node = i;
+      }
     }
   }
 }

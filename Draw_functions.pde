@@ -120,8 +120,8 @@ void drawwords() { //Draws all words on the screen
   text("Current Temperature: " + nf(exp(-avg_delta_cost/T), 1, 2), midp2+125, h-30);
   text("Temperature Minimum: " + nf(T_min_p, 1, 2), midp2+125, h-10);
   text("Time remaining", screen_x/2, screen_y/2+210);
-  if (game_modifier == 1){
-    text("Rowdy Students Seperated: " +calculateanticost(nodes),  midp1+100, 570);
+  if (game_modifier == 1) {
+    text("Rowdy Students Seperated: " +calculateanticost(nodes), midp1+100, 570);
   }
 
   textSize(24);
@@ -147,7 +147,7 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   fill(0);
   //textMode(CORNER);
   textAlign(LEFT, CENTER);
-  
+
   text (result, w/2-250, 55);
   textAlign(CENTER);
   if (millis()%2==0) {
@@ -157,11 +157,59 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   text ("Number of nodes(max 25),\nInitial temperature(max 99),\nMinimum temperature(min 0.0001),\nCooling rate(max 0.999),\nGame mode for regular or rowdy students(0 or 1),\nTime Modifier(0.1<x<1, 1 is fastest)", w/2, 180);
 }
 
-void holdnode(){ 
-  if (node_locked == true && mouseX<midp1+250-nodes[0].size/2 && mouseX>midp1-250+nodes[0].size/2 ){//
+void holdnode(node[] nodes) { 
+  if (node_locked == true && mouseX<midp1+250-nodes[0].size/2 && mouseX>midp1-250+nodes[0].size/2 ) {//
     nodes[locked_node].x = mouseX;
   }
-  if (node_locked == true && mouseY<500-nodes[0].size/2 && mouseY>100+nodes[0].size/2){
+  if (node_locked == true && mouseY<500-nodes[0].size/2 && mouseY>100+nodes[0].size/2) {
     nodes[locked_node].y = mouseY;
+  }
+}
+
+void holdpracticenode(node[] nodes) { 
+  if (node_locked == true && mouseX<w/2+250-nodes[0].size/2 && mouseX>w/2-250+nodes[0].size/2 ) {//
+    nodes[locked_node].x = mouseX;
+  }
+  if (node_locked == true && mouseY<500-nodes[0].size/2 && mouseY>100+nodes[0].size/2) {
+    nodes[locked_node].y = mouseY;
+  }
+}
+
+
+void draw_state() {
+  for (int i=0; i<5; i++) {
+    fill(0);
+    circle(30+30*i, h-20, 15);
+  }
+  switch (state) {
+  case 0: //main
+    fill(230);
+    circle(30, h-20, 14);
+    break;
+
+  case -1:
+    fill(230);
+    circle(90, h-20, 14);
+    break;
+
+  case 2:
+    fill(230);
+    circle(60, h-20, 14);
+    break;
+
+  case 4:
+    fill(230);
+    circle(60, h-20, 14);
+    break;
+
+  case 5:
+    fill(230);
+    circle(120, h-20, 14);
+    break;
+
+  case 6:
+    fill(230);
+    circle(150, h-20, 14);
+    break;
   }
 }

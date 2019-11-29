@@ -3,12 +3,13 @@ node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
 node [] new_partitions = new node[number_of_nodes];
 node [] best_partitions = new node[number_of_nodes];
+node [] practice_nodes = new node[number_of_nodes];
 
 void initializenodes(node[] nodes) {
   /* Input: node []
    Output: Fills in node array with empty values */
   for (int i = 0; i<number_of_nodes; i++) {
-    nodes[i] = new node(0, -100, -100, 0, 'a', new IntList(), new IntList(), color(0, 0, 0));
+    nodes[i] = new node(0, -100, -100, 0, 'c', new IntList(), new IntList(), color(0, 0, 0));
   }
 }
 void createnodes(node[] nodes, int n) {
@@ -158,6 +159,17 @@ void do_once(int state) {
     needs_setup=false;
   }
   if (state ==5 && needs_setup==true) {
+    number_of_nodes = 2;
+    initializenodes(practice_nodes);
+    practice_nodes[0].size = 60;
+    practice_nodes[1].size = 60;
+    practice_nodes[0].col = color(random(50, 255), random(50, 255), random(50, 255));
+    practice_nodes[1].col = color(random(50, 255), random(50, 255), random(50, 255));
+    practice_nodes[0].x = int(w/2-100);
+    practice_nodes[1].x = int(w/2+100);
+    practice_nodes[0].y = int(h/2);
+    practice_nodes[1].y = int(h/2);
+    practice_nodes[0].connections.append(1);
     needs_setup =false;
   }
 }
