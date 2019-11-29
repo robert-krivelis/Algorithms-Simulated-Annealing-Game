@@ -35,15 +35,17 @@ void mouseReleased() {
     if (nodes[locked_node].x<midp1) {
       nodes[locked_node].partition = 'a';
     }
-  }
-  else if (state==5) {//Click and drag nodes code for tutorial
+  } else if (state==5) {//Click and drag nodes code for tutorial
     check_y_collisions(practice_nodes);
     node_locked = false;
+    if (practice_nodes[locked_node] == null) { //trying tro fix random crash problem
+    } else {
       if (practice_nodes[locked_node].x>w/2) {
-      practice_nodes[locked_node].partition = 'b';
-    }
-    if (practice_nodes[locked_node].x<w/2) {
-      practice_nodes[locked_node].partition = 'a';
+        practice_nodes[locked_node].partition = 'b';
+      }
+      if (practice_nodes[locked_node].x<w/2) {
+        practice_nodes[locked_node].partition = 'a';
+      }
     }
   }
 }

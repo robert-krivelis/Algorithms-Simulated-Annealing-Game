@@ -141,10 +141,6 @@ void do_once(int state) {
     setupselectionmenu_d();
     needs_setup=false;
   }
-  if (state ==2 && needs_setup==true) {
-    setupselectionmenu_d();
-    needs_setup=false;
-  }
   if (state ==3 && needs_setup==true) {
     draw_end_game_screen();
     needs_setup=false;
@@ -168,6 +164,8 @@ void do_once(int state) {
     practice_nodes[1].col = color(random(50, 255), random(50, 255), random(50, 255));
     practice_nodes[0].x = int(w/2-100);
     practice_nodes[1].x = int(w/2+100);
+    practice_nodes[0].partition = 'a';
+    practice_nodes[1].partition = 'b';
     practice_nodes[0].y = int(h/2);
     practice_nodes[1].y = int(h/2);
     practice_nodes[0].connections.append(1);
