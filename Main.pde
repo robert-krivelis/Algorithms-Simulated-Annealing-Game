@@ -1,8 +1,6 @@
 //Luke and Robert ENCM 507 Project phase 2, 2019
 //Student Seperation
-//TODO: Custom input sanitation > sliders?
 //TODO: Computer speed slider?
-//TODO: Pause time button?
 //TODO: Happiness as nice visual
 //TODO: Rowdy students as a different visual rather than red line
 //TODO: Make into 4 classes
@@ -63,8 +61,8 @@ void draw() {
     break;
   case 3:
     do_once(3); //setup for state 3 (end game screen)
-    fill(#FFCF9C);
-    rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    fill(buttoncol);
+    rect(rect4[0], rect4[1], rect4[2], rect4[3],brad);
     hover();
     fill(0);
     text("Main Menu", rect4[0], rect4[1]);

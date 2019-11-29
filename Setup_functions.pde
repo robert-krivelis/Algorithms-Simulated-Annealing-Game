@@ -1,3 +1,4 @@
+  
 boolean needs_setup=true;
 node [] nodes = new node[number_of_nodes];
 node [] computer_nodes = new node[number_of_nodes];
@@ -5,6 +6,7 @@ node [] new_partitions = new node[number_of_nodes];
 node [] best_partitions = new node[number_of_nodes];
 node [] practice_nodes = new node[number_of_nodes];
 node [] sim_nodes = new node[number_of_nodes];
+HashMap<Integer, String> hm = new HashMap<Integer, String>();
 void initializenodes(node[] nodes) {
   /* Input: node []
    Output: Fills in node array with empty values */
@@ -12,13 +14,20 @@ void initializenodes(node[] nodes) {
     nodes[i] = new node(0, -100, -100, 0, 'c', new IntList(), new IntList(), color(0, 0, 0));
   }
 }
+
+//using this to select a random on flavour colour for our aesthetic
+color aesthetic(){
+ color c = color( random(100,255), random(100,255), random(100,255), 255);
+  return c;
+}
+
 void createnodes(node[] nodes, int n) {
   /* Input: node [] and n which is number of nodes.
    Output: Fills in node array with meaningful values, giving a location, color, and partition to each node  */
   for (int i = 0; i<n; i++) {
     nodes[i].ID = i;
     nodes[i].size = int( -1.2*n + 50); // y = mx + b for size of nodes 
-    nodes[i].col = color(random(50, 255), random(50, 255), random(50, 255));
+    nodes[i].col = color(aesthetic());
     if (random(0, 1.0)<0.5) {
       nodes[i].partition = 'a'; 
       nodes[i].x = (int) random(50+nodes[i].size, 300-nodes[i].size);

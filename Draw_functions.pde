@@ -6,7 +6,7 @@ float play_x = screen_x-200;
 float midp1 = screen_x/4;
 float midp2 = screen_x*3/4;
 int game_started; //For time purposes
-color bg_color = #21D19F; //Background color
+color bg_color = #C5F7D9; //Background color kinda like 21D19F
 PImage classroom; //Image from https://azpng.com/classroom-clipart-our-we-and-vector-for-clip-art-students-png-13568
 PImage classroom_flipped;
 float timer;
@@ -39,7 +39,7 @@ void drawsplit() { //Draws the cut between the two partitions
 
 void drawtime() {
   rectMode(CORNER);
-  noFill();
+  fill(255); //12345
   rect(screen_x/2-25, screen_y/2-200, 50, 400);
   fill(230, 50, 50);
   noStroke();
@@ -92,7 +92,7 @@ void drawplayarea() { //Draws pink play areas
   rectMode(CENTER);
   fill(255);
   rect(screen_x/4, screen_y/2, screen_x/2-100, play_y);
-  fill(255, 255-255*exp(-avg_delta_cost/T), 255-255*exp(-avg_delta_cost/T)) ; //Changes color of computer play area based on temp
+  fill(255-1/exp(-avg_delta_cost/(T*2.75)), 255-255*exp(-avg_delta_cost/T), 255-255*exp(-avg_delta_cost/T)) ; //Changes color of computer play area based on temp
   rect(screen_x*3/4, screen_y/2, screen_x/2-100, play_y);
   rectMode(CORNER);
 }

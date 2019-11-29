@@ -3,12 +3,12 @@
 //These are all global rectangles.
 float [] rect1, rect2, rect3;
 float w = 1200, h = 600;
-float []rect4= {w/2, h-50, 200, 80};
-float []rect5 ={0,0,0,0};
-float []rect6 ={0,0,0,0};
-float []rect7={0,0,0,0};
-float []rect8= {w/2, h-60, 70, 35};
-float []rect9= {w/2, h-20, 70, 35};
+float []rect4= {w/2, h-50, 200, 80, 7};
+float []rect5 ={0, 0, 0, 0};
+float []rect6 ={0, 0, 0, 0};
+float []rect7={0, 0, 0, 0};
+float []rect8= {w/2, h-60, 70, 35, 7};
+float []rect9= {w/2, h-20, 70, 35, 7};
 String result;
 
 boolean overButton(int dimensions[]) {
@@ -29,7 +29,7 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
   background(bg_color);
   rectMode(CENTER);
   fill(255);
-  rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  rect(rect4[0], rect4[1], rect4[2], rect4[3], brad);
   hover();
   fill(0);
   textSize(40);
@@ -54,26 +54,42 @@ void draw_instruction_screen() { //Draws very first screen with instructions/sto
 //***Hover functions used for changing colours of buttons when hovered over with the mouse.
 
 color hovercol = #FFCF9C ;
+int hovrad = 3;
 void hover() { //Changes buttons based on if you are hovering above them or not
   fill(hovercol);
   if (overButton(int(rect4)) && (state == 3 || state == 4|| state == 5|| state == 6|| state == -1)) {
-    rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+    rect(rect4[0], rect4[1], rect4[2], rect4[3], hovrad);
   } else if (overButton(int(rect1)) && (state == 2 || state == 0)) {
-    rect(rect1[0], rect1[1], rect1[2], rect1[3]);
+    rect(rect1[0], rect1[1], rect1[2], rect1[3], hovrad);
   } else if (overButton(int(rect2)) && (state == 2 || state == 0)) {
-    rect(rect2[0], rect2[1], rect2[2], rect2[3]);
+    rect(rect2[0], rect2[1], rect2[2], rect2[3], hovrad);
   } else if (overButton(int(rect3)) && (state == 2 || state == 0)) {
-    rect(rect3[0], rect3[1], rect3[2], rect3[3]);
+    rect(rect3[0], rect3[1], rect3[2], rect3[3], hovrad);
   } else if (overButton(int(rect5)) && (state == 2 || state == 0)) {
-    rect(rect5[0], rect5[1], rect5[2], rect5[3]);
+    rect(rect5[0], rect5[1], rect5[2], rect5[3], hovrad);
   } else if (overButton(int(rect6)) && (state == 2 || state == 0)) {
-    rect(rect6[0], rect6[1], rect6[2], rect6[3]);
+    rect(rect6[0], rect6[1], rect6[2], rect6[3], hovrad);
   } else if (overButton(int(rect7)) && (state == 2 || state == 0)) {
-    rect(rect7[0], rect7[1], rect7[2], rect7[3]);
+    rect(rect7[0], rect7[1], rect7[2], rect7[3], hovrad);
+  } else if (overButton(int(rect8)) && (state == 1)) {//pause
+    if (paused) {
+      fill(#9FC6DD);
+      rect(rect8[0], rect8[1], rect8[2], rect8[3], hovrad);
+      fill(0);
+      textSize(14);
+      text("Unpause", rect8[0], rect8[1]);
+    } else {
+      rect(rect8[0], rect8[1], rect8[2], rect8[3], hovrad);
+      fill(0);
+      textSize(18);
+      text("Pause", rect8[0], rect8[1]);
+    }
+  } else if (overButton(int(rect9)) && (state == 1)) {//finish
+    rect(rect9[0], rect9[1], rect9[2], rect9[3], hovrad);
   }
 }
 
-
+int brad = 7;
 void setupselectionmenu() { //Sets up menu where you can select different play styles
   rect1 = new float[4];
   rect2 = new float[4];
@@ -93,14 +109,14 @@ void setupselectionmenu() { //Sets up menu where you can select different play s
   rect3[2] = w*0.7;
   rect3[3] = h*0.15;
 }
-color buttoncol = #E8F1F2;
+color buttoncol = #FEFFE8;
 void drawmenu() { //Draws menu where you can select different play styles
   background(bg_color);
   fill(buttoncol );
   rectMode(CENTER);
-  rect(rect1[0], rect1[1], rect1[2], rect1[3]);
-  rect(rect2[0], rect2[1], rect2[2], rect2[3]);
-  rect(rect3[0], rect3[1], rect3[2], rect3[3]);
+  rect(rect1[0], rect1[1], rect1[2], rect1[3], brad);
+  rect(rect2[0], rect2[1], rect2[2], rect2[3], brad);
+  rect(rect3[0], rect3[1], rect3[2], rect3[3], brad);
   hover();
   fill(0);
   textAlign(CENTER, CENTER);
@@ -139,11 +155,11 @@ void setupselectionmenu_d() { //Sets up difficulty menu
 }
 void drawmenu_d() { //Draws difficulty menu
   background(bg_color);
-  fill(255);
+  fill(buttoncol);
   rectMode(CENTER);
-  rect(rect5[0], rect5[1], rect5[2], rect5[3]);
-  rect(rect6[0], rect6[1], rect6[2], rect6[3]);
-  rect(rect7[0], rect7[1], rect7[2], rect7[3]);
+  rect(rect5[0], rect5[1], rect5[2], rect5[3], brad);
+  rect(rect6[0], rect6[1], rect6[2], rect6[3], brad);
+  rect(rect7[0], rect7[1], rect7[2], rect7[3], brad);
   hover();
   fill(0);
   textAlign(CENTER, CENTER);
@@ -172,8 +188,8 @@ void drawnames() { //Draws our names! We did this
 void draw_input_screen() { //Draws very first screen with instructions/story
   background(bg_color);
   rectMode(CENTER);
-  fill(255);
-  rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  fill(buttoncol);
+  rect(rect4[0], rect4[1], rect4[2], rect4[3], brad);
   hover();
   fill(0);
   textSize(40);
@@ -251,20 +267,34 @@ void convertinput() { //Converts string in the text box of custom game setup to 
     }
   }
 }
- color pauscol = #88c4e0;
+color pauscol = #FFC53A;
 void drawpause() { //this is the pause button
+
   fill(pauscol);
   rectMode(CENTER);
-  rect(rect8[0], rect8[1], rect8[2], rect8[3]);
+  rect(rect8[0], rect8[1], rect8[2], rect8[3], 7);
+  hover();
   fill(0);
+  textSize(18);
   text("Pause", rect8[0], rect8[1]);
+
+  if (paused) {
+    fill(#78A1BB);
+    rect(rect8[0], rect8[1], rect8[2], rect8[3], hovrad);
+    fill(0);
+    textSize(14);
+    text("Unpause", rect8[0], rect8[1]);
+  }
 }
 
 void drawfinish() { //this is the restart button
+
   fill(pauscol);
   rectMode(CENTER);
-  rect(rect9[0], rect9[1], rect9[2], rect9[3]);
+  rect(rect9[0], rect9[1], rect9[2], rect9[3], 7);
+  hover();
   fill(0);
+  textSize(18);
   text("Finish", rect9[0], rect9[1]);
 }
 void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
@@ -273,7 +303,7 @@ void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   //image(instructions_pic, w/2, h/2-100, 506, 450); 
   imageMode(CORNER);
   rectMode(CENTER);
-  fill(255);
+  fill(buttoncol);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
   hover();
   fill(0);
@@ -319,7 +349,7 @@ void draw_sim_demo() {
   //image(instructions_pic, w/2, h/2-100, 506, 450); 
   imageMode(CORNER);
   rectMode(CENTER);
-  fill(255);
+  fill(buttoncol);
   rect(rect4[0], rect4[1], rect4[2], rect4[3]);
   hover();
   fill(0);

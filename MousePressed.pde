@@ -74,7 +74,6 @@ void mousePressed() { //What happens when you click on the screen?
     
     fill(255);
     // rect(rect4[0], rect4[1], rect4[2], rect4[3]);
-    // hover_i();
     if (overButton(int(rect4))) { //Top secret code
       needs_setup = true;
       state = 0;
