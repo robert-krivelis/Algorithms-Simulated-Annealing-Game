@@ -174,6 +174,7 @@ void do_once(int state) {
     needs_setup =false;
   }
   if (state ==6 && needs_setup==true) {
+    iteration=0;
     initializenodes(sim_nodes);
     createnodes(sim_nodes, difficulty);
     T = FirstThreeStepsAnnealing(sim_nodes, T_initial_p, T_min_p)[0];

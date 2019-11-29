@@ -260,13 +260,6 @@ void drawpause() { //this is the pause button
   fill(0);
   text("Pause", rect8[0], rect8[1]);
 }
-void drawrestart() { //this is the restart button
-  fill(#88c4e0);
-  rectMode(CENTER);
-  rect(rect8[0], rect8[1], rect8[2], rect8[3]);
-  fill(0);
-  text("Pause", rect8[0], rect8[1]);
-}
 
 void drawfinish() { //this is the restart button
   fill(#88c4e0);
@@ -274,7 +267,6 @@ void drawfinish() { //this is the restart button
   rect(rect9[0], rect9[1], rect9[2], rect9[3]);
   fill(0);
   text("Finish", rect9[0], rect9[1]); 
-  paused = false;
 }
 void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   background(bg_color);
@@ -351,4 +343,13 @@ void draw_sim_demo() {
   line(w/2, 100, w/2, 500);
   drawconnections(sim_nodes);
   drawnodes(sim_nodes);
+  textSize(30);
+  textAlign(CENTER,CENTER);
+  text("Score: " + (int)(COST(sim_nodes))+"%", w/2 + 400, h/2-50);
+  textSize(20);
+  text("Iteration: " + iteration, w/2 + 400, h/2);
+  text("Watch the red circle to see which \nmove was just taken.\n\n If temperature is high, a \nmove is more likely to be taken. \n\nWhen temperature is low, more\niterations happen\nwithout moving a node." ,w/2 - 425, h/2);
+  text("Current Temperature: " + (nf(100*exp(-avg_delta_cost/T), 1, 2)) + "%", w/2+ 400, h/2+30);
+  text("Temperature Minimum: " + nf(T_min_p, 1, 2) + "%", w/2 +400, h/2+60);
+  
 }

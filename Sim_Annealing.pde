@@ -45,9 +45,11 @@ void PERTURB(node[] nodes, int balance_min) {
   if (nodes[i].partition =='a' && calculatebalance(nodes) - 1.0/number_of_nodes*100>balance_min) { //change partition to b if a will retain 20% or more of the current nodes
     nodes[i].partition ='b';
     nodes[i].x += 300-50;
+    last_moved = i;
   } else if (nodes[i].partition =='b' && (100-calculatebalance(nodes)) - 1.0/number_of_nodes*100>balance_min) { //change partition to a if b will retain more than 20% of the current nodes
     nodes[i].partition ='a';
     nodes[i].x -= 300-50;
+    last_moved = i;
   }
   check_y_collisions(nodes);
 }
@@ -76,7 +78,6 @@ float [] FirstThreeStepsAnnealing(node[] nodes, float Tinitial_p, float Tmin_p) 
       }
     }
   }
-  iteration +=3;
   float [] TandTmin = {-avg_delta_cost/log(Tinitial_p/100.0)*pow(cooling_rate, 3), -avg_delta_cost/log(Tmin_p/100.0)*pow(cooling_rate, 3)}; //return values from percentages with these iterations taken into account
   return TandTmin;
 }

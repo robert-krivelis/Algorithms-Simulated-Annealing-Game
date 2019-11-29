@@ -4,9 +4,6 @@ int instancenum = 2;
 Test[] instances =  new Test[instancenum]; 
 String nodetext, temptext;
 
-//for (int i = 0; i<instancenum; i++){
-// intances[i].x =  
-//}
 void mouseReleased() {
 
   //unlock
@@ -29,7 +26,7 @@ void mouseReleased() {
       i++;
     }
   }
-  if (state==1) { 
+  if (state==1) {  //Click and drag nodes code for game
     check_y_collisions(nodes);
     node_locked = false;
     if (nodes[locked_node].x>midp1) {
@@ -39,10 +36,10 @@ void mouseReleased() {
       nodes[locked_node].partition = 'a';
     }
   }
-  else if (state==5) {
+  else if (state==5) {//Click and drag nodes code for tutorial
     check_y_collisions(practice_nodes);
     node_locked = false;
-    if (practice_nodes[locked_node].x>w/2) {
+      if (practice_nodes[locked_node].x>w/2) {
       practice_nodes[locked_node].partition = 'b';
     }
     if (practice_nodes[locked_node].x<w/2) {

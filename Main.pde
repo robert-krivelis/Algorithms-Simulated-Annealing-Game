@@ -16,7 +16,7 @@ float cooling_rate = 0.98; //How fast the temperature lowers, lower = faster.
 float timer_modifier = 0.7; //lower is slower
 int state = 0;
 int game_modifier =0;
-
+int Counter = 0;
 /*
 State -1 = Instructions
  State 0 = Game selection (Starting Screen)
@@ -87,7 +87,13 @@ void draw() {
     do_once(6); //simulated annealing demo screen
     draw_sim_demo();
     draw_state(); 
-    simulatedannealingexample(sim_nodes);
+    if (Counter > 30 ) { //Slows down simulated annealing example, lower number = faster annealing
+      simulatedannealingexample(sim_nodes);
+      Counter = 0;
+    } else {
+      Counter++;
+    }
+    drawlastmoved(sim_nodes, last_moved);
     break;
   default:
     break;

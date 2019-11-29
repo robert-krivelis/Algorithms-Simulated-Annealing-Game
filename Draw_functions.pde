@@ -12,6 +12,7 @@ PImage classroom_flipped;
 float timer;
 float [] timer_bar = {screen_x/2, screen_y/2-200, 50, 400};
 boolean paused = false; //this is for the pause button
+int last_moved = 0;
 
 
 void drawconnections(node [] nodes) {
@@ -117,8 +118,8 @@ void drawwords() { //Draws all words on the screen
   text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(nodes)-50)/50.0)*100.0)+ "%", midp1-100, 590); //%error is (e-t)/t
   text("Happiness of Teachers: " +(int)(100-abs((calculatebalance(computer_nodes)-50)/50.0)*100.0)+ "%", midp2-125, 590); //%error is (e-t)/t
   text("Iterations completed: " + iteration, midp2+125, h-50);
-  text("Current Temperature: " + nf(exp(-avg_delta_cost/T), 1, 2), midp2+125, h-30);
-  text("Temperature Minimum: " + nf(T_min_p, 1, 2), midp2+125, h-10);
+  text("Current Temperature: " + (nf(100*exp(-avg_delta_cost/T), 1, 2)) + "%", midp2+125, h-30);
+  text("Temperature Minimum: " + nf(T_min_p, 1, 2) + "%", midp2+125, h-10);
   text("Time remaining", screen_x/2, screen_y/2+210);
   if (game_modifier == 1) {
     text("Rowdy Students Seperated: " +calculateanticost(nodes), midp1+100, 570);
@@ -212,4 +213,13 @@ void draw_state() {
     circle(150, h-20, 14);
     break;
   }
+}
+
+void drawlastmoved(node [] nodes, int i) {
+  noFill();
+  strokeWeight(3);
+  stroke(255, 0, 0);
+  circle(nodes[i].x, nodes[i].y, nodes[i].size + 3);
+  strokeWeight(1);
+  stroke(0);
 }
