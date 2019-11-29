@@ -106,6 +106,20 @@ void mousePressed() { //What happens when you click on the screen?
   } else if (state ==5) {
     if (overButton(int(rect4))) { //If you click continue
       number_of_nodes = difficulty;
+      state=6;
+      needs_setup = true;
+      return;
+    }
+    for (int i=0; i<number_of_nodes; i++) { //Checks if you clicked on a node and moves it
+      if (state ==5 && mouseX > practice_nodes[i].x-practice_nodes[i].size/2 && mouseX < practice_nodes[i].x+practice_nodes[i].size/2 && mouseY > practice_nodes[i].y-practice_nodes[i].size/2 && mouseY < practice_nodes[i].y+practice_nodes[i].size/2) {// Check if you clicked on a node
+        node_locked = true;
+        locked_node = i;
+      }
+    }
+  }
+  else if (state ==6) {
+    if (overButton(int(rect4))) { //If you click continue
+      number_of_nodes = difficulty;
       state=1;
       needs_setup = true;
       return;

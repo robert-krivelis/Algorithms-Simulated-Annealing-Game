@@ -79,9 +79,15 @@ void draw() {
     break;
   case 5:
     do_once(5); //practice movement screen
-    draw_instructions_pic(); 
+    draw_practice(); 
     draw_state();
     holdpracticenode(practice_nodes);
+    break;
+  case 6:
+    do_once(6); //simulated annealing demo screen
+    draw_sim_demo();
+    draw_state(); 
+    simulatedannealingexample(sim_nodes);
     break;
   default:
     break;

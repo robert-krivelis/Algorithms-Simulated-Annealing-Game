@@ -276,7 +276,7 @@ void drawfinish() { //this is the restart button
   text("Finish", rect9[0], rect9[1]); 
   paused = false;
 }
-void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
+void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   background(bg_color);
   imageMode(CENTER);
   //image(instructions_pic, w/2, h/2-100, 506, 450); 
@@ -289,7 +289,6 @@ void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
   textFont(createFont("Georgia", 40));
   textAlign(CENTER, CENTER);
   text("Continue", w/2, h-55);
-
 
   textFont(createFont("Agency FB Bold", 60));
   text("Practice moving students!", w/2, 55);
@@ -323,5 +322,33 @@ void draw_instructions_pic() { //INSTRUCTIONS SCREEN TO PRACTICE
 }
 
 //TO DO: INSTRUCTIONS SCREEN TO WATCH SIM ANNEALING
-void draw_sim_annealing_example() {
+void draw_sim_demo() {
+  background(bg_color);
+  imageMode(CENTER);
+  //image(instructions_pic, w/2, h/2-100, 506, 450); 
+  imageMode(CORNER);
+  rectMode(CENTER);
+  fill(255);
+  rect(rect4[0], rect4[1], rect4[2], rect4[3]);
+  hover_i();
+  fill(0);
+  textFont(createFont("Georgia", 20));
+  textAlign(CENTER, CENTER);
+  text("Try to beat\nSimulated Annealing!", w/2, h-55);
+
+  textFont(createFont("Agency FB Bold", 60));
+  text("Watch how simulated annealing works!", w/2, 55);
+  //DRAWS PLAY AREA
+  rectMode(CENTER);
+  fill(255);
+  rect(screen_x/2, screen_y/2, screen_x/2-100, play_y);
+  rectMode(CORNER);
+  //DRAWS LETTERS AND LINE
+  fill(0);
+  textFont(createFont("Georgia", 36));
+  text("A", w/2-5*textsize, 150);
+  text("B", w/2+5*textsize, 150);
+  line(w/2, 100, w/2, 500);
+  drawconnections(sim_nodes);
+  drawnodes(sim_nodes);
 }

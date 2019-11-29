@@ -4,7 +4,7 @@ node [] computer_nodes = new node[number_of_nodes];
 node [] new_partitions = new node[number_of_nodes];
 node [] best_partitions = new node[number_of_nodes];
 node [] practice_nodes = new node[number_of_nodes];
-
+node [] sim_nodes = new node[number_of_nodes];
 void initializenodes(node[] nodes) {
   /* Input: node []
    Output: Fills in node array with empty values */
@@ -123,6 +123,7 @@ void do_once(int state) {
     needs_setup=false;
   }
   if (state==1 && needs_setup==true) { //State one initialization 
+    iteration   =0;
     music(music_rate, 1);
     game_started = millis();
     initializenodes(nodes); //Initalizes player nodes
@@ -170,6 +171,17 @@ void do_once(int state) {
     practice_nodes[0].y = int(h/2);
     practice_nodes[1].y = int(h/2);
     practice_nodes[0].connections.append(1);
+    needs_setup =false;
+  }
+  if (state ==6 && needs_setup==true) {
+    initializenodes(sim_nodes);
+    createnodes(sim_nodes, difficulty);
+    T = FirstThreeStepsAnnealing(sim_nodes, T_initial_p, T_min_p)[0];
+    Tmin = FirstThreeStepsAnnealing(sim_nodes, T_initial_p, T_min_p)[1];
+    for (int i=0;i<difficulty;i++){
+      sim_nodes[i].x += 300;
+      new_partitions[i].x += 300;
+    }
     needs_setup =false;
   }
 }
