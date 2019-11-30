@@ -1,10 +1,5 @@
 //Luke and Robert ENCM 507 Project phase 2, 2019
 //Student Seperation
-//TODO: Computer speed slider?
-//TODO: Happiness as nice visual
-//TODO: Rowdy students as a different visual rather than red line
-//TODO: Make into 4 classes
-//TODO: Happy and sad faces
 
 int [] amount_of_nodes = {5, 10, 15}; //Amount of nodes for difficulties easy, medium, and hard. Feel free to change it to something else.
 int number_of_nodes =  25; //Maximum number of nodes
