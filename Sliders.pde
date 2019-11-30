@@ -14,7 +14,7 @@ void mouseReleased() {
     {
       t.lock = false;
     }
-    result = ""; // i"m tired, please find a better way 
+    result = ""; 
     result += nodetext;
     result += ',';
     result += temptext;

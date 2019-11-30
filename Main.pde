@@ -11,9 +11,9 @@ int number_of_nodes =  25; //Maximum number of nodes
 float T_initial_p = 99; //Initial temperature for simulated annealing
 float T_min_p = 0.01; //Minimum temperature for simulated annealing
 float cooling_rate = 0.98; //How fast the temperature lowers, lower = faster. 
-float timer_modifier = 0.7; //lower is slower
-int state = 0;
-int game_modifier =0;
+float timer_modifier = 0.7; //Lower is slower
+int state = 0; //Starting screen state
+int game_modifier =0; //0 is regular game, 1 is to seperate rowdy kids
 int Counter = 0;
 /*
 State -1 = Instructions
@@ -30,17 +30,17 @@ void setup() {
 }
 void draw() {
   switch (state) {
-  case -1:
-    do_once(-1); //setup for state -1
-    draw_instruction_screen();
-    draw_state();
+  case -1: //INSTRUCTION SCREEN
+    do_once(-1); //Setup for state -1
+    draw_instruction_screen(); //Displays instructions for player
+    draw_state(); //Shows how many steps are left until the game screen in the bottom left 
     break;
-  case 0:
-    do_once(0); //setup for state 0
-    drawmenu();
-    draw_state();
+  case 0: //STARTING SCREEN
+    do_once(0); //Setup for state 0
+    drawmenu(); //Draws main selection menu
+    draw_state();//Shows how many steps are left until the game screen in the bottom left 
     break;
-  case 1:
+  case 1: //PLAY GAME
     do_once(1);
     drawplayarea(); //Draws the two player areas 
     drawtime(); //Draws time remaining
@@ -54,36 +54,36 @@ void draw() {
     drawfinish();
     holdnode(nodes);
     break;
-  case 2:
-    do_once(2); //setup for state 2 (difficulty screen)
+  case 2: //DIFFICULTY SCREEN
+    do_once(2); //Setup for state 2 (difficulty screen)
     drawmenu_d();
-    draw_state();
+    draw_state();//Shows how many steps are left until the game screen in the bottom left 
     break;
-  case 3:
-    do_once(3); //setup for state 3 (end game screen)
+  case 3: //END GAME SCREEN
+    do_once(3); //Setup for state 3 (end game screen)
     fill(buttoncol);
     rect(rect4[0], rect4[1], rect4[2], rect4[3],brad);
     hover();
     fill(0);
     text("Main Menu", rect4[0], rect4[1]);
     break;
-  case 4:
-    do_once(4); //setup for state 4 (input screen)
-    draw_input_screen(); 
-    draw_text_box();
-    draw_state();
-    for (Test t : instances)
+  case 4: //CUSTOM INPUT FOR SIMULATED ANNEALING
+    do_once(4); //Setup for state 4 (input screen)
+    draw_input_screen(); //Draws background
+    draw_text_box(); //Input text box
+    draw_state();//Shows how many steps are left until the game screen in the bottom left 
+    for (Test t : instances) //Draws sliders
       t.run();
     break;
-  case 5:
-    do_once(5); //practice movement screen
-    draw_practice(); 
-    draw_state();
-    holdpracticenode(practice_nodes);
+  case 5: //PRACTICE MOVEMENT SCREEN
+    do_once(5); //Setup
+    draw_practice(); //Shows practice screen
+    draw_state(); //Shows how many steps are left until the game screen in the bottom left 
+    holdpracticenode(practice_nodes); //Allows player to click and drag nodes
     break;
-  case 6:
-    do_once(6); //simulated annealing demo screen
-    draw_sim_demo();
+  case 6: //SIMULATED ANNEALING DEMO
+    do_once(6); //Setup
+    draw_sim_demo();//Shows simulated annealing demo
     draw_state(); 
     if (Counter > 30 ) { //Slows down simulated annealing example, lower number = faster annealing
       simulatedannealingexample(sim_nodes);
@@ -91,7 +91,7 @@ void draw() {
     } else {
       Counter++;
     }
-    drawlastmoved(sim_nodes, last_moved);
+    drawlastmoved(sim_nodes, last_moved); //Draws red outline on circle
     break;
   default:
     break;

@@ -45,7 +45,7 @@ void PERTURB(node[] nodes, int balance_min) {
   if (nodes[i].partition =='a' && calculatebalance(nodes) - 1.0/number_of_nodes*100>balance_min) { //change partition to b if a will retain 20% or more of the current nodes
     nodes[i].partition ='b';
     nodes[i].x += 300-50;
-    last_moved = i;
+    last_moved = i; //Updates red circle for sim annealing demo
   } else if (nodes[i].partition =='b' && (100-calculatebalance(nodes)) - 1.0/number_of_nodes*100>balance_min) { //change partition to a if b will retain more than 20% of the current nodes
     nodes[i].partition ='a';
     nodes[i].x -= 300-50;
@@ -113,7 +113,7 @@ int calculatebalance(node[] nodes) { //calculates balance based on how many node
   }
   return round(a/number_of_nodes*100.0);
 }
-void simulatedannealingexample (node[] nodes) { 
+void simulatedannealingexample (node[] nodes) {  //SIMULATED ANNEALING CODE FOR SIM ANNEALING DEMO
   /* Input: node [], T initial percentage, T minimum percentage
    Output: Goes through Simulated Annealing for a given node array based on T initial percentage, T minimum percentage */
   float r, delta_cost;

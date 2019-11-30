@@ -37,7 +37,7 @@ void drawsplit() { //Draws the cut between the two partitions
   line(midp2, 100, midp2, 500);
 }
 
-void drawtime() {
+void drawtime() { //Draws red timer bar in the middle of the screen
   rectMode(CORNER);
   fill(255); //12345
   rect(screen_x/2-25, screen_y/2-200, 50, 400);
@@ -55,7 +55,7 @@ void drawtime() {
   }
   stroke(0);
 }
-void draw_end_game_screen() {
+void draw_end_game_screen() { //Draws the screen once time runs out
   music(1, 0);
   rectMode(CENTER);
   fill(255, 255, 255, 230); //alpha of 230
@@ -158,7 +158,7 @@ void draw_text_box() { //Draws the text box in the custom input screen and the t
   text ("Number of nodes(max 25),\nInitial temperature(max 99),\nMinimum temperature(min 0.0001),\nCooling rate(max 0.999),\nGame mode for regular or rowdy students(0 or 1),\nTime Modifier(0.1<x<1, 1 is fastest)", w/2, 180);
 }
 
-void holdnode(node[] nodes) { 
+void holdnode(node[] nodes) { //For click and dragging nodes
   if (node_locked == true && mouseX<midp1+250-nodes[0].size/2 && mouseX>midp1-250+nodes[0].size/2 ) {//
     nodes[locked_node].x = mouseX;
   }
@@ -167,7 +167,7 @@ void holdnode(node[] nodes) {
   }
 }
 
-void holdpracticenode(node[] nodes) { 
+void holdpracticenode(node[] nodes) { //For click and dragging practice nodes
   if (node_locked == true && mouseX<w/2+250-nodes[0].size/2 && mouseX>w/2-250+nodes[0].size/2 ) {//
     nodes[locked_node].x = mouseX;
   }
@@ -177,12 +177,12 @@ void holdpracticenode(node[] nodes) {
 }
 
 
-void draw_state() {
+void draw_state() {  //For drawing the circles in the bottom left to get through menus
   for (int i=0; i<5; i++) {
     fill(0);
     circle(30+30*i, h-20, 15);
   }
-  switch (state) {
+  switch (state) { //Depends on which state you're in, where the white circle is drawn
   case 0: //main
     fill(230);
     circle(30, h-20, 14);
@@ -215,7 +215,7 @@ void draw_state() {
   }
 }
 
-void drawlastmoved(node [] nodes, int i) {
+void drawlastmoved(node [] nodes, int i) { //Draws a red circle around the last moved node in simulated annealing demo
   noFill();
   strokeWeight(3);
   stroke(255, 0, 0);

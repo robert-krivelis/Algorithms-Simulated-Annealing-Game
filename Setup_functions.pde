@@ -164,7 +164,7 @@ void do_once(int state) {
     stroke(0);
     needs_setup=false;
   }
-  if (state ==5 && needs_setup==true) {
+  if (state ==5 && needs_setup==true) { //SETUP FOR PRACTICING MOVEMENT
     number_of_nodes = 2;
     initializenodes(practice_nodes);
     practice_nodes[0].size = 60;
@@ -180,7 +180,7 @@ void do_once(int state) {
     practice_nodes[0].connections.append(1);
     needs_setup =false;
   }
-  if (state ==6 && needs_setup==true) {
+  if (state ==6 && needs_setup==true) { //SETUP FOR SIM ANNEALING DEMO
     iteration=0;
     initializenodes(sim_nodes);
     createnodes(sim_nodes, difficulty);

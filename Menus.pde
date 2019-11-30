@@ -200,10 +200,10 @@ void draw_input_screen() { //Draws very first screen with instructions/story
 void keyPressed() { //Checks for key presses for the input custom settings screen
   if (result.length()<25) {
     if (false) {
-    } else if (key == '2') { //rob pls, why does this start with 2?
-      result +='2';
-    } else if (key == '1') {
+    } else if (key == '1') { //rob pls, why does this start with 2?
       result +='1';
+    } else if (key == '2') {
+      result +='2';
     } else if (key == '3') {
       result +='3';
     } else if (key == '4') {
@@ -297,7 +297,7 @@ void drawfinish() { //this is the restart button
   textSize(18);
   text("Finish", rect9[0], rect9[1]);
 }
-void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
+void draw_practice() { //PRACTICE MOVING NODES AROUND CODE
   background(bg_color);
   imageMode(CENTER);
   //image(instructions_pic, w/2, h/2-100, 506, 450); 
@@ -342,8 +342,8 @@ void draw_practice() { //INSTRUCTIONS SCREEN TO PRACTICE
   drawnodes(practice_nodes);
 }
 
-//TO DO: INSTRUCTIONS SCREEN TO WATCH SIM ANNEALING
-void draw_sim_demo() {
+
+void draw_sim_demo() {//WATCH SIM ANNEALING DEMO
   background(bg_color);
   imageMode(CENTER);
   //image(instructions_pic, w/2, h/2-100, 506, 450); 
